@@ -1,0 +1,50 @@
+name: Hydrate full source bundle
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'source-bundles/qoc_code_only.tar.gz'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  hydrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and extract source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f source-bundles/qoc_code_only.tar.gz
+          echo '3ee3f36267ca5f830d2f76cafd06501808e02051ee162c02e635981ab7435eae  source-bundles/qoc_code_only.tar.gz' | sha256sum -c -
+          rm -rf .hydrate
+          mkdir .hydrate
+          tar -xzf source-bundles/qoc_code_only.tar.gz -C .hydrate
+          ROOT=.hydrate/LodgeFlow_FINAL_LocalDocker_PyCharm_20260823
+          test -d "$ROOT/backend"
+          test -d "$ROOT/frontend"
+          rsync -a --delete \
+            --exclude '.git/' \
+            --exclude '.github/workflows/hydrate-source.yml' \
+            "$ROOT/" ./
+          rm -rf .hydrate
+      - name: Commit hydrated application tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Source tree already hydrated.'
+            exit 0
+          fi
+          git commit -m 'feat: hydrate complete Quill of the Craft application source'
+          git push origin HEAD:main

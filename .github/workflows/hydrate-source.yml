@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'source-bundles/qoc_code_only.tar.gz'
+      - 'source-bundles/qoc_hydrate_min.tar.xz'
+      - 'source-bundles/quill-logo.png'
   workflow_dispatch:
 
 permissions:
@@ -22,18 +23,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -f source-bundles/qoc_code_only.tar.gz
-          echo '3ee3f36267ca5f830d2f76cafd06501808e02051ee162c02e635981ab7435eae  source-bundles/qoc_code_only.tar.gz' | sha256sum -c -
+          test -f source-bundles/qoc_hydrate_min.tar.xz
+          echo '203757682b8e2fee28e9485e127e9f3fbfa4be78f0bf4fbbd3b08c947656e4eb  source-bundles/qoc_hydrate_min.tar.xz' | sha256sum -c -
           rm -rf .hydrate
           mkdir .hydrate
-          tar -xzf source-bundles/qoc_code_only.tar.gz -C .hydrate
+          tar -xJf source-bundles/qoc_hydrate_min.tar.xz -C .hydrate
           ROOT=.hydrate/LodgeFlow_FINAL_LocalDocker_PyCharm_20260823
           test -d "$ROOT/backend"
           test -d "$ROOT/frontend"
-          rsync -a --delete \
+          rsync -a \
             --exclude '.git/' \
             --exclude '.github/workflows/hydrate-source.yml' \
             "$ROOT/" ./
+          if [ -f source-bundles/quill-logo.png ]; then
+            mkdir -p frontend/public frontend/app
+            cp source-bundles/quill-logo.png frontend/public/quill-logo.png
+            cp source-bundles/quill-logo.png frontend/public/favicon.png
+            cp source-bundles/quill-logo.png frontend/app/icon.png
+          fi
           rm -rf .hydrate
       - name: Commit hydrated application tree
         shell: bash

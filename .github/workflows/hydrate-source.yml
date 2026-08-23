@@ -26,7 +26,7 @@ jobs:
           cat source-bundles/chunks/source.part.* | base64 -d > /tmp/qoc_hydrate_min.tar.xz
           echo '203757682b8e2fee28e9485e127e9f3fbfa4be78f0bf4fbbd3b08c947656e4eb  /tmp/qoc_hydrate_min.tar.xz' | sha256sum -c -
           cat source-bundles/chunks/logo.part.* | base64 -d > /tmp/quill-logo.png
-          echo '663f6260a5fdb6f017bb8357fd1090116ae07badc2eb62aa3e9137e769dbfb19  /tmp/quill-logo.png' | sha256sum -c -
+          echo '82afe8a886a5912037e84b4216f429e1f9a23995f00c9fe79c178939fcaa0447  /tmp/quill-logo.png' | sha256sum -c -
           rm -rf .hydrate
           mkdir .hydrate
           tar -xJf /tmp/qoc_hydrate_min.tar.xz -C .hydrate

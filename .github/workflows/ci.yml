@@ -36,16 +36,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.13'}
-      - run: pip install pytest
+        with: {python-version: '3.12'}
+      - run: pip install pytest pyyaml pypdf
       - run: pytest -q qa
       - run: python qa/generate_traceability.py
+      - name: Verify contractual PDF sample pack
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          sample_dir=Path('docs/samples')
+          expected=[
+            'D-001-receipt.pdf','D-002-member-statement.pdf','D-003-meeting-minutes.pdf',
+            'D-004-summons-notice.pdf','D-005-attendance-sheet.pdf','D-006-meeting-pack.pdf',
+            'D-007-officer-roster.pdf','D-008-candidate-progress.pdf','D-009-arrears-notice.pdf',
+            'D-010-management-pack.pdf',
+          ]
+          for name in expected:
+            path=sample_dir/name
+            assert path.is_file() and path.stat().st_size>500, f'missing/empty sample: {name}'
+            reader=PdfReader(str(path))
+            text='\n'.join((page.extract_text() or '') for page in reader.pages)
+            assert 'Quill of the Craft' in text, f'branding missing: {name}'
+            assert 'Page 1 of' in text, f'page numbering missing: {name}'
+          print(f'validated {len(expected)} searchable contractual PDF samples')
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: requirements-traceability
           path: |
             qa/requirements_traceability.json
             qa/requirements_traceability.csv
+            docs/samples/*.pdf
 
   frontend:
     needs: preflight
@@ -90,7 +112,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.13', cache: 'pip'}
+        with: {python-version: '3.12', cache: 'pip'}
       - run: pip install -r backend/requirements.txt
       - working-directory: backend
         run: python manage.py check
@@ -99,6 +121,7 @@ jobs:
           DEBUG: 'false'
           ALLOWED_HOSTS: testserver.example.org
           CSRF_TRUSTED_ORIGINS: https://testserver.example.org
+          API_ALLOWED_ORIGINS: https://testserver.example.org
           CREDENTIAL_ENCRYPTION_KEYS: ci-key-version-1:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
         run: python manage.py check --deploy
       - working-directory: backend
@@ -115,7 +138,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.13'}
+        with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: pip install pip-audit
@@ -129,17 +152,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker-e2e:
-    needs: [preflight, source-qa, frontend, backend]
+    needs: [preflight, source-qa, frontend, backend, security]
     if: >-
       always() &&
       needs.preflight.outputs.ready == 'true' &&
       needs.source-qa.result == 'success' &&
       needs.frontend.result == 'success' &&
-      needs.backend.result == 'success'
+      needs.backend.result == 'success' &&
+      needs.security.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: cp .env.local.example .env.local
+      - run: docker compose --env-file .env.local -f docker-compose.local.yml config -q
       - run: docker compose --env-file .env.local -f docker-compose.local.yml up -d --build
       - name: Wait for running stack
         run: |

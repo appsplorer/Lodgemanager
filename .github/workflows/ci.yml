@@ -1,0 +1,126 @@
+name: Quill of the Craft CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  source-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: pip install pytest
+      - run: pytest -q qa
+      - run: python qa/generate_traceability.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: requirements-traceability
+          path: |
+            qa/requirements_traceability.json
+            qa/requirements_traceability.csv
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22', cache: 'npm', cache-dependency-path: frontend/package.json}
+      - working-directory: frontend
+        run: npm install --no-audit --no-fund
+      - working-directory: frontend
+        run: npm run check:syntax
+      - working-directory: frontend
+        run: npm run typecheck
+      - working-directory: frontend
+        run: npm run build
+
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7.4-alpine
+        ports: ['6379:6379']
+      postgres:
+        image: postgres:17
+        env: {POSTGRES_DB: lodgeflow, POSTGRES_USER: lodgeflow, POSTGRES_PASSWORD: lodgeflow}
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U lodgeflow" --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DJANGO_SECRET_KEY: ci-only-not-production-secret-key-with-more-than-50-characters
+      DEBUG: 'true'
+      POSTGRES_DB: lodgeflow
+      POSTGRES_USER: lodgeflow
+      POSTGRES_PASSWORD: lodgeflow
+      POSTGRES_HOST: 127.0.0.1
+      POSTGRES_PORT: 5432
+      REDIS_URL: redis://127.0.0.1:6379/0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13', cache: 'pip'}
+      - run: pip install -r backend/requirements.txt
+      - working-directory: backend
+        run: python manage.py check
+      - working-directory: backend
+        run: python manage.py makemigrations --check --dry-run
+      - working-directory: backend
+        run: python manage.py migrate --noinput
+      - working-directory: backend
+        run: python manage.py test platform_core --verbosity 2
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: pip install pip-audit
+      - run: pip-audit -r backend/requirements.txt --progress-spinner=off
+      - working-directory: frontend
+        run: npm install --package-lock-only --ignore-scripts --no-fund
+      - working-directory: frontend
+        run: npm audit --audit-level=high
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  docker-e2e:
+    runs-on: ubuntu-latest
+    needs: [source-qa,frontend,backend]
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp .env.local.example .env.local
+      - run: docker compose --env-file .env.local -f docker-compose.local.yml up -d --build
+      - name: Wait for running stack
+        run: |
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:8000/api/health/ >/dev/null && curl -fsS http://127.0.0.1:3000/ >/dev/null; then exit 0; fi
+            sleep 5
+          done
+          docker compose --env-file .env.local -f docker-compose.local.yml ps
+          docker compose --env-file .env.local -f docker-compose.local.yml logs --tail=200
+          exit 1
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - working-directory: frontend
+        run: npm install --no-audit --no-fund
+      - working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - working-directory: frontend
+        env:
+          E2E_BASE_URL: http://127.0.0.1:3000
+          E2E_ADMIN_EMAIL: admin@lodgeflow.local
+          E2E_ADMIN_PASSWORD: QuillCraftLocal123!
+        run: npm run test:e2e
+      - if: always()
+        run: mkdir -p artifacts && docker compose --env-file .env.local -f docker-compose.local.yml logs --no-color > artifacts/docker-e2e.log || true
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: artifacts/
+      - if: always()
+        run: docker compose --env-file .env.local -f docker-compose.local.yml down -v

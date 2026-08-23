@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: {node-version: '22', cache: 'npm', cache-dependency-path: frontend/package.json}
+        with: {node-version: '22'}
       - working-directory: frontend
         run: npm install --no-audit --no-fund
       - working-directory: frontend
@@ -62,6 +62,13 @@ jobs:
       - run: pip install -r backend/requirements.txt
       - working-directory: backend
         run: python manage.py check
+      - working-directory: backend
+        env:
+          DEBUG: 'false'
+          ALLOWED_HOSTS: testserver.example.org
+          CSRF_TRUSTED_ORIGINS: https://testserver.example.org
+          CREDENTIAL_ENCRYPTION_KEYS: ci-key-version-1:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+        run: python manage.py check --deploy
       - working-directory: backend
         run: python manage.py makemigrations --check --dry-run
       - working-directory: backend
@@ -116,7 +123,11 @@ jobs:
           E2E_ADMIN_PASSWORD: QuillCraftLocal123!
         run: npm run test:e2e
       - if: always()
-        run: mkdir -p artifacts && docker compose --env-file .env.local -f docker-compose.local.yml logs --no-color > artifacts/docker-e2e.log || true
+        run: |
+          mkdir -p artifacts
+          docker compose --env-file .env.local -f docker-compose.local.yml logs --no-color > artifacts/docker-e2e.log || true
+          cp -R frontend/test-results artifacts/test-results 2>/dev/null || true
+          cp -R frontend/playwright-report artifacts/playwright-report 2>/dev/null || true
       - if: always()
         uses: actions/upload-artifact@v4
         with:

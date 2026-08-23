@@ -31,17 +31,30 @@ jobs:
           mkdir .hydrate
           tar -xJf /tmp/qoc_hydrate_min.tar.xz -C .hydrate
           ROOT=.hydrate/LodgeFlow_FINAL_LocalDocker_PyCharm_20260823
-          test -d "$ROOT/backend"
-          test -d "$ROOT/frontend"
+          test -f "$ROOT/backend/manage.py"
+          test -f "$ROOT/backend/requirements.txt"
+          test -f "$ROOT/frontend/package.json"
+          test -d "$ROOT/qa"
           rsync -a \
             --exclude '.git/' \
             --exclude '.github/workflows/hydrate-source.yml' \
+            --exclude '.github/workflows/ci.yml' \
             "$ROOT/" ./
           mkdir -p frontend/public frontend/app
           cp /tmp/quill-logo.png frontend/public/quill-logo.png
           cp /tmp/quill-logo.png frontend/public/favicon.png
           cp /tmp/quill-logo.png frontend/app/icon.png
           rm -rf .hydrate
+      - name: Verify hydrated tree before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f backend/manage.py
+          test -f backend/requirements.txt
+          test -f frontend/package.json
+          test -d qa
+          test -f frontend/public/quill-logo.png
+          test -f frontend/app/icon.png
       - name: Commit hydrated application tree
         shell: bash
         run: |

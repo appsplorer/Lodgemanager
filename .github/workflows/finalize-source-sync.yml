@@ -3,18 +3,23 @@ name: Finalize verified source sync
 on:
   push:
     branches: [chatgpt-full-source-sync-20260824]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   finalize:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.head_ref == 'chatgpt-full-source-sync-20260824')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: chatgpt-full-source-sync-20260824
           fetch-depth: 0
+          token: ${{ github.token }}
 
       - name: Reassemble and apply verified source payload
         shell: bash
@@ -50,7 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf .patch-sync-v1 .source-sync .source-sync-v2 .source-sync-v3 source-bundles source-hydration-20260823
-          rm -f frontend/tsconfig.tsbuildinfo
+          rm -f .source-sync-trigger frontend/tsconfig.tsbuildinfo
           if ! grep -qxF '*.tsbuildinfo' .gitignore 2>/dev/null; then
             printf '\n*.tsbuildinfo\n' >> .gitignore
           fi

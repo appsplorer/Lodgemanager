@@ -26,10 +26,16 @@ jobs:
         run: |
           set -euo pipefail
           test -d .patch-sync-v1
-          : > /tmp/lodgeflow-sync.gz
-          for chunk in .patch-sync-v1/chunk.*; do
-            base64 -d "$chunk" >> /tmp/lodgeflow-sync.gz
-          done
+          python - <<'PY'
+          import base64
+          from pathlib import Path
+          chunks = sorted(Path('.patch-sync-v1').glob('chunk.*'))
+          assert chunks, 'No synchronization chunks found'
+          raw = b''.join(p.read_bytes() for p in chunks)
+          decoded = base64.b64decode(raw, validate=False)
+          Path('/tmp/lodgeflow-sync.gz').write_bytes(decoded)
+          print(f'chunks={len(chunks)} encoded_bytes={len(raw)} decoded_bytes={len(decoded)}')
+          PY
           gzip -t /tmp/lodgeflow-sync.gz
           gzip -dc /tmp/lodgeflow-sync.gz > /tmp/lodgeflow-sync.payload
           echo "Payload type: $(file -b /tmp/lodgeflow-sync.payload)"

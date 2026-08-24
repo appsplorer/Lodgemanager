@@ -1,0 +1,87 @@
+name: Finalize verified source sync
+
+on:
+  push:
+    branches: [chatgpt-full-source-sync-20260824]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reassemble and apply verified source payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d .patch-sync-v1
+          cat .patch-sync-v1/chunk.* | base64 -d > /tmp/lodgeflow-sync.gz
+          gzip -t /tmp/lodgeflow-sync.gz
+          gzip -dc /tmp/lodgeflow-sync.gz > /tmp/lodgeflow-sync.payload
+          echo "Payload type: $(file -b /tmp/lodgeflow-sync.payload)"
+          echo "Payload bytes: $(wc -c < /tmp/lodgeflow-sync.payload)"
+
+          if tar -tf /tmp/lodgeflow-sync.payload >/dev/null 2>&1; then
+            rm -rf /tmp/lodgeflow-tree
+            mkdir -p /tmp/lodgeflow-tree
+            tar -xf /tmp/lodgeflow-sync.payload -C /tmp/lodgeflow-tree
+            ROOT=$(find /tmp/lodgeflow-tree -mindepth 1 -maxdepth 1 -type d | head -n 1)
+            if [ -z "$ROOT" ]; then ROOT=/tmp/lodgeflow-tree; fi
+            rsync -a --delete \
+              --exclude '.git/' \
+              --exclude '.github/workflows/finalize-source-sync.yml' \
+              "$ROOT/" ./
+          elif head -n 20 /tmp/lodgeflow-sync.payload | grep -Eq '^(diff --git|From [0-9a-f]{40})'; then
+            git apply --index --3way /tmp/lodgeflow-sync.payload || git apply --index /tmp/lodgeflow-sync.payload
+          else
+            echo 'Unsupported synchronization payload format.' >&2
+            head -n 20 /tmp/lodgeflow-sync.payload >&2 || true
+            exit 1
+          fi
+
+      - name: Remove temporary hydration artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .patch-sync-v1 .source-sync .source-sync-v2 .source-sync-v3 source-bundles source-hydration-20260823
+          rm -f frontend/tsconfig.tsbuildinfo
+          if ! grep -qxF '*.tsbuildinfo' .gitignore 2>/dev/null; then
+            printf '\n*.tsbuildinfo\n' >> .gitignore
+          fi
+
+      - name: Verify source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f backend/manage.py
+          test -f backend/requirements.txt
+          test -f frontend/package.json
+          test -d qa
+          python -m compileall -q backend qa
+          if [ -f qa/test_offline_release.py ]; then
+            python -m pytest -q qa/test_offline_release.py
+          else
+            python -m pytest -q qa
+          fi
+          git diff --check
+          test ! -e frontend/tsconfig.tsbuildinfo
+
+      - name: Commit finalized application source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No source changes to commit.'
+            exit 0
+          fi
+          git commit -m 'feat: synchronize complete verified LodgeFlow source'
+          git push origin HEAD:chatgpt-full-source-sync-20260824

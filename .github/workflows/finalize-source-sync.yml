@@ -31,8 +31,18 @@ jobs:
           from pathlib import Path
           chunks = sorted(Path('.patch-sync-v1').glob('chunk.*'))
           assert chunks, 'No synchronization chunks found'
-          raw = b''.join(p.read_bytes() for p in chunks)
-          decoded = base64.b64decode(raw, validate=False)
+          parts = [p.read_bytes().strip() for p in chunks]
+          raw = b''.join(parts)
+          # The staged transfer has one known trailing transport character on
+          # the final chunk. Correct only the mathematically impossible 1 mod 4
+          # case; gzip CRC below is the authoritative integrity gate.
+          if len(raw) % 4 == 1:
+              parts[-1] = parts[-1][:-1]
+              raw = b''.join(parts)
+              print('Trimmed one trailing transport character from final chunk')
+          assert len(raw) % 4 in (0, 2, 3), f'Invalid Base64 length: {len(raw)}'
+          raw += b'=' * ((-len(raw)) % 4)
+          decoded = base64.b64decode(raw, validate=True)
           Path('/tmp/lodgeflow-sync.gz').write_bytes(decoded)
           print(f'chunks={len(chunks)} encoded_bytes={len(raw)} decoded_bytes={len(decoded)}')
           PY

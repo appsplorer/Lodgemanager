@@ -21,36 +21,68 @@ jobs:
           fetch-depth: 0
           token: ${{ github.token }}
 
-      - name: Reassemble and apply verified source payload
+      - name: Recover transfer payload by CRC verification
         shell: bash
         run: |
           set -euo pipefail
-          test -d .patch-sync-v1
           python - <<'PY'
-          import base64
+          import base64, gzip, hashlib
           from pathlib import Path
-          chunks = sorted(Path('.patch-sync-v1').glob('chunk.*'))
-          assert chunks, 'No synchronization chunks found'
-          parts = [p.read_bytes().strip() for p in chunks]
-          raw = b''.join(parts)
-          # The staged transfer has one known trailing transport character on
-          # the final chunk. Correct only the mathematically impossible 1 mod 4
-          # case; gzip CRC below is the authoritative integrity gate.
-          if len(raw) % 4 == 1:
-              parts[-1] = parts[-1][:-1]
-              raw = b''.join(parts)
-              print('Trimmed one trailing transport character from final chunk')
-          assert len(raw) % 4 in (0, 2, 3), f'Invalid Base64 length: {len(raw)}'
-          raw += b'=' * ((-len(raw)) % 4)
-          decoded = base64.b64decode(raw, validate=True)
-          Path('/tmp/lodgeflow-sync.gz').write_bytes(decoded)
-          print(f'chunks={len(chunks)} encoded_bytes={len(raw)} decoded_bytes={len(decoded)}')
+
+          candidates = [Path('.patch-sync-v1'), Path('.source-sync')]
+          recovered = []
+          for directory in candidates:
+              if not directory.is_dir():
+                  continue
+              chunks = sorted(directory.glob('chunk.*'))
+              if not chunks:
+                  continue
+              parts = [p.read_bytes().strip() for p in chunks]
+              prefix = b''.join(parts[:-1])
+              tail = parts[-1]
+              print(f'{directory}: chunks={len(chunks)} prefix={len(prefix)} tail={len(tail)} total={len(prefix)+len(tail)}')
+
+              variants = []
+              total = len(prefix) + len(tail)
+              if total % 4 == 1:
+                  variants = range(len(tail))
+              else:
+                  variants = [None]
+
+              for i in variants:
+                  raw = prefix + (tail if i is None else tail[:i] + tail[i+1:])
+                  if len(raw) % 4:
+                      raw += b'=' * ((-len(raw)) % 4)
+                  try:
+                      compressed = base64.b64decode(raw, validate=True)
+                      payload = gzip.decompress(compressed)
+                  except Exception:
+                      continue
+                  removed = 'none' if i is None else f'{i}:{chr(tail[i])}'
+                  sha = hashlib.sha256(payload).hexdigest()
+                  print(f'VALID {directory} removed={removed} compressed={len(compressed)} payload={len(payload)} sha256={sha}')
+                  recovered.append((directory, i, compressed, payload, sha))
+
+          if not recovered:
+              raise SystemExit('No candidate passed Base64 + gzip CRC/ISIZE integrity verification')
+          # Prefer the explicitly staged incremental patch when valid.
+          recovered.sort(key=lambda r: (0 if r[0].name == '.patch-sync-v1' else 1, str(r[0]), -1 if r[1] is None else r[1]))
+          directory, pos, compressed, payload, sha = recovered[0]
+          Path('/tmp/lodgeflow-sync.gz').write_bytes(compressed)
+          Path('/tmp/lodgeflow-sync.payload').write_bytes(payload)
+          Path('/tmp/lodgeflow-sync-source.txt').write_text(str(directory))
+          print(f'SELECTED {directory} removal={pos} sha256={sha}')
           PY
           gzip -t /tmp/lodgeflow-sync.gz
-          gzip -dc /tmp/lodgeflow-sync.gz > /tmp/lodgeflow-sync.payload
+          echo "Payload source: $(cat /tmp/lodgeflow-sync-source.txt)"
           echo "Payload type: $(file -b /tmp/lodgeflow-sync.payload)"
           echo "Payload bytes: $(wc -c < /tmp/lodgeflow-sync.payload)"
+          sha256sum /tmp/lodgeflow-sync.payload
 
+      - name: Apply recovered source payload
+        shell: bash
+        run: |
+          set -euo pipefail
           if tar -tf /tmp/lodgeflow-sync.payload >/dev/null 2>&1; then
             rm -rf /tmp/lodgeflow-tree
             mkdir -p /tmp/lodgeflow-tree
@@ -87,14 +119,12 @@ jobs:
           test -f backend/requirements.txt
           test -f frontend/package.json
           test -d qa
+          python -m pip install -q pytest PyYAML
           python -m compileall -q backend qa
-          if [ -f qa/test_offline_release.py ]; then
-            python -m pytest -q qa/test_offline_release.py
-          else
-            python -m pytest -q qa
-          fi
+          python -m pytest -q qa/test_offline_release.py
           git diff --check
           test ! -e frontend/tsconfig.tsbuildinfo
+          echo "Tracked files after cleanup: $(git ls-files | wc -l)"
 
       - name: Commit finalized application source
         shell: bash

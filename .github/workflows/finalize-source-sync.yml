@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
           token: ${{ github.token }}
 
-      - name: Recover transfer payload by CRC verification
+      - name: Recover staged source by CRC verification
         shell: bash
         run: |
           set -euo pipefail
@@ -29,28 +29,30 @@ jobs:
           import base64, gzip, hashlib
           from pathlib import Path
 
-          candidates = [Path('.patch-sync-v1'), Path('.source-sync')]
-          recovered = []
-          for directory in candidates:
-              if not directory.is_dir():
-                  continue
-              chunks = sorted(directory.glob('chunk.*'))
-              if not chunks:
-                  continue
-              parts = [p.read_bytes().strip() for p in chunks]
-              prefix = b''.join(parts[:-1])
-              tail = parts[-1]
-              print(f'{directory}: chunks={len(chunks)} prefix={len(prefix)} tail={len(tail)} total={len(prefix)+len(tail)}')
+          directory = Path('.source-sync')
+          if not directory.is_dir():
+              raise SystemExit('.source-sync staging directory is missing')
+          chunks = sorted(directory.glob('chunk.*'))
+          if not chunks:
+              raise SystemExit('No .source-sync chunks found')
+          parts = [p.read_bytes().strip() for p in chunks]
+          bad = [i for i, part in enumerate(parts) if len(part) % 4 != 0]
+          print('chunk lengths:', [(p.name, len(parts[i])) for i, p in enumerate(chunks)])
+          print('misaligned chunk indices:', bad)
+          if not bad:
+              bad = [None]
 
-              variants = []
-              total = len(prefix) + len(tail)
-              if total % 4 == 1:
-                  variants = range(len(tail))
-              else:
-                  variants = [None]
-
-              for i in variants:
-                  raw = prefix + (tail if i is None else tail[:i] + tail[i+1:])
+          valid = []
+          for chunk_index in bad:
+              positions = [None] if chunk_index is None else range(len(parts[chunk_index]))
+              for pos in positions:
+                  candidate = list(parts)
+                  removed = None
+                  if chunk_index is not None:
+                      part = candidate[chunk_index]
+                      removed = part[pos:pos+1]
+                      candidate[chunk_index] = part[:pos] + part[pos+1:]
+                  raw = b''.join(candidate)
                   if len(raw) % 4:
                       raw += b'=' * ((-len(raw)) % 4)
                   try:
@@ -58,23 +60,31 @@ jobs:
                       payload = gzip.decompress(compressed)
                   except Exception:
                       continue
-                  removed = 'none' if i is None else f'{i}:{chr(tail[i])}'
                   sha = hashlib.sha256(payload).hexdigest()
-                  print(f'VALID {directory} removed={removed} compressed={len(compressed)} payload={len(payload)} sha256={sha}')
-                  recovered.append((directory, i, compressed, payload, sha))
+                  record = (chunk_index, pos, removed, compressed, payload, sha)
+                  valid.append(record)
+                  print(
+                      'VALID',
+                      f'chunk={chunk_index}',
+                      f'position={pos}',
+                      f'removed={removed!r}',
+                      f'compressed={len(compressed)}',
+                      f'payload={len(payload)}',
+                      f'sha256={sha}',
+                  )
 
-          if not recovered:
-              raise SystemExit('No candidate passed Base64 + gzip CRC/ISIZE integrity verification')
-          # Prefer the explicitly staged incremental patch when valid.
-          recovered.sort(key=lambda r: (0 if r[0].name == '.patch-sync-v1' else 1, str(r[0]), -1 if r[1] is None else r[1]))
-          directory, pos, compressed, payload, sha = recovered[0]
+          if not valid:
+              raise SystemExit('No single-character correction passed gzip CRC/ISIZE verification')
+          unique_payloads = {item[5] for item in valid}
+          if len(unique_payloads) != 1:
+              raise SystemExit(f'Ambiguous recovery: {len(unique_payloads)} distinct CRC-valid payloads')
+          chosen = valid[0]
+          chunk_index, pos, removed, compressed, payload, sha = chosen
           Path('/tmp/lodgeflow-sync.gz').write_bytes(compressed)
           Path('/tmp/lodgeflow-sync.payload').write_bytes(payload)
-          Path('/tmp/lodgeflow-sync-source.txt').write_text(str(directory))
-          print(f'SELECTED {directory} removal={pos} sha256={sha}')
+          print(f'SELECTED chunk={chunk_index} position={pos} removed={removed!r} sha256={sha}')
           PY
           gzip -t /tmp/lodgeflow-sync.gz
-          echo "Payload source: $(cat /tmp/lodgeflow-sync-source.txt)"
           echo "Payload type: $(file -b /tmp/lodgeflow-sync.payload)"
           echo "Payload bytes: $(wc -c < /tmp/lodgeflow-sync.payload)"
           sha256sum /tmp/lodgeflow-sync.payload

@@ -1,0 +1,151 @@
+name: Finalize verified source sync
+
+on:
+  push:
+    branches: [chatgpt-full-source-sync-20260824]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.head_ref == 'chatgpt-full-source-sync-20260824')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt-full-source-sync-20260824
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Recover staged source by CRC verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64, gzip, hashlib
+          from pathlib import Path
+
+          directory = Path('.source-sync')
+          if not directory.is_dir():
+              raise SystemExit('.source-sync staging directory is missing')
+          chunks = sorted(directory.glob('chunk.*'))
+          if not chunks:
+              raise SystemExit('No .source-sync chunks found')
+          parts = [p.read_bytes().strip() for p in chunks]
+          bad = [i for i, part in enumerate(parts) if len(part) % 4 != 0]
+          print('chunk lengths:', [(p.name, len(parts[i])) for i, p in enumerate(chunks)])
+          print('misaligned chunk indices:', bad)
+          if not bad:
+              bad = [None]
+
+          valid = []
+          for chunk_index in bad:
+              positions = [None] if chunk_index is None else range(len(parts[chunk_index]))
+              for pos in positions:
+                  candidate = list(parts)
+                  removed = None
+                  if chunk_index is not None:
+                      part = candidate[chunk_index]
+                      removed = part[pos:pos+1]
+                      candidate[chunk_index] = part[:pos] + part[pos+1:]
+                  raw = b''.join(candidate)
+                  if len(raw) % 4:
+                      raw += b'=' * ((-len(raw)) % 4)
+                  try:
+                      compressed = base64.b64decode(raw, validate=True)
+                      payload = gzip.decompress(compressed)
+                  except Exception:
+                      continue
+                  sha = hashlib.sha256(payload).hexdigest()
+                  record = (chunk_index, pos, removed, compressed, payload, sha)
+                  valid.append(record)
+                  print(
+                      'VALID',
+                      f'chunk={chunk_index}',
+                      f'position={pos}',
+                      f'removed={removed!r}',
+                      f'compressed={len(compressed)}',
+                      f'payload={len(payload)}',
+                      f'sha256={sha}',
+                  )
+
+          if not valid:
+              raise SystemExit('No single-character correction passed gzip CRC/ISIZE verification')
+          unique_payloads = {item[5] for item in valid}
+          if len(unique_payloads) != 1:
+              raise SystemExit(f'Ambiguous recovery: {len(unique_payloads)} distinct CRC-valid payloads')
+          chosen = valid[0]
+          chunk_index, pos, removed, compressed, payload, sha = chosen
+          Path('/tmp/lodgeflow-sync.gz').write_bytes(compressed)
+          Path('/tmp/lodgeflow-sync.payload').write_bytes(payload)
+          print(f'SELECTED chunk={chunk_index} position={pos} removed={removed!r} sha256={sha}')
+          PY
+          gzip -t /tmp/lodgeflow-sync.gz
+          echo "Payload type: $(file -b /tmp/lodgeflow-sync.payload)"
+          echo "Payload bytes: $(wc -c < /tmp/lodgeflow-sync.payload)"
+          sha256sum /tmp/lodgeflow-sync.payload
+
+      - name: Apply recovered source payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          if tar -tf /tmp/lodgeflow-sync.payload >/dev/null 2>&1; then
+            rm -rf /tmp/lodgeflow-tree
+            mkdir -p /tmp/lodgeflow-tree
+            tar -xf /tmp/lodgeflow-sync.payload -C /tmp/lodgeflow-tree
+            ROOT=$(find /tmp/lodgeflow-tree -mindepth 1 -maxdepth 1 -type d | head -n 1)
+            if [ -z "$ROOT" ]; then ROOT=/tmp/lodgeflow-tree; fi
+            rsync -a --delete \
+              --exclude '.git/' \
+              --exclude '.github/workflows/finalize-source-sync.yml' \
+              "$ROOT/" ./
+          elif head -n 20 /tmp/lodgeflow-sync.payload | grep -Eq '^(diff --git|From [0-9a-f]{40})'; then
+            git apply --index --3way /tmp/lodgeflow-sync.payload || git apply --index /tmp/lodgeflow-sync.payload
+          else
+            echo 'Unsupported synchronization payload format.' >&2
+            head -n 20 /tmp/lodgeflow-sync.payload >&2 || true
+            exit 1
+          fi
+
+      - name: Remove temporary hydration artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .patch-sync-v1 .source-sync .source-sync-v2 .source-sync-v3 source-bundles source-hydration-20260823
+          rm -f .source-sync-trigger frontend/tsconfig.tsbuildinfo
+          if ! grep -qxF '*.tsbuildinfo' .gitignore 2>/dev/null; then
+            printf '\n*.tsbuildinfo\n' >> .gitignore
+          fi
+
+      - name: Verify source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f backend/manage.py
+          test -f backend/requirements.txt
+          test -f frontend/package.json
+          test -d qa
+          python -m pip install -q pytest PyYAML
+          python -m compileall -q backend qa
+          python -m pytest -q qa/test_offline_release.py
+          git diff --check
+          test ! -e frontend/tsconfig.tsbuildinfo
+          echo "Tracked files after cleanup: $(git ls-files | wc -l)"
+
+      - name: Commit finalized application source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No source changes to commit.'
+            exit 0
+          fi
+          git commit -m 'feat: synchronize complete verified LodgeFlow source'
+          git push origin HEAD:chatgpt-full-source-sync-20260824

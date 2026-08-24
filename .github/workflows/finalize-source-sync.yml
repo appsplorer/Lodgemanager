@@ -26,7 +26,10 @@ jobs:
         run: |
           set -euo pipefail
           test -d .patch-sync-v1
-          cat .patch-sync-v1/chunk.* | base64 -d > /tmp/lodgeflow-sync.gz
+          : > /tmp/lodgeflow-sync.gz
+          for chunk in .patch-sync-v1/chunk.*; do
+            base64 -d "$chunk" >> /tmp/lodgeflow-sync.gz
+          done
           gzip -t /tmp/lodgeflow-sync.gz
           gzip -dc /tmp/lodgeflow-sync.gz > /tmp/lodgeflow-sync.payload
           echo "Payload type: $(file -b /tmp/lodgeflow-sync.payload)"

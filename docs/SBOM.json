@@ -1,0 +1,175 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:00000000-0000-4000-8000-202608240001",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-08-24T20:30:00Z",
+    "component": {
+      "type": "application",
+      "name": "LodgeFlow",
+      "version": "1.0.0"
+    },
+    "properties": [
+      {
+        "name": "lodgeflow:sbom-status",
+        "value": "declared-direct-dependencies; CI must refresh resolved transitive SBOM before production sign-off"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "Django",
+      "version": "5.2.17",
+      "purl": "pkg:pypi/django@5.2.17"
+    },
+    {
+      "type": "library",
+      "name": "gunicorn",
+      "version": "23.0.0",
+      "purl": "pkg:pypi/gunicorn@23.0.0"
+    },
+    {
+      "type": "library",
+      "name": "psycopg[binary]",
+      "version": "3.2.10",
+      "purl": "pkg:pypi/psycopg[binary]@3.2.10"
+    },
+    {
+      "type": "library",
+      "name": "celery",
+      "version": "5.6.2",
+      "purl": "pkg:pypi/celery@5.6.2"
+    },
+    {
+      "type": "library",
+      "name": "redis",
+      "version": "6.4.0",
+      "purl": "pkg:pypi/redis@6.4.0"
+    },
+    {
+      "type": "library",
+      "name": "cryptography",
+      "version": "45.0.7",
+      "purl": "pkg:pypi/cryptography@45.0.7"
+    },
+    {
+      "type": "library",
+      "name": "openpyxl",
+      "version": "3.1.5",
+      "purl": "pkg:pypi/openpyxl@3.1.5"
+    },
+    {
+      "type": "library",
+      "name": "reportlab",
+      "version": "4.4.3",
+      "purl": "pkg:pypi/reportlab@4.4.3"
+    },
+    {
+      "type": "library",
+      "name": "requests",
+      "version": "2.32.5",
+      "purl": "pkg:pypi/requests@2.32.5"
+    },
+    {
+      "type": "library",
+      "name": "stripe",
+      "version": "12.5.0",
+      "purl": "pkg:pypi/stripe@12.5.0"
+    },
+    {
+      "type": "library",
+      "name": "django-redis",
+      "version": "6.0.0",
+      "purl": "pkg:pypi/django-redis@6.0.0"
+    },
+    {
+      "type": "library",
+      "name": "django-storages[boto3]",
+      "version": "1.14.6",
+      "purl": "pkg:pypi/django-storages[boto3]@1.14.6"
+    },
+    {
+      "type": "library",
+      "name": "boto3",
+      "version": "1.40.21",
+      "purl": "pkg:pypi/boto3@1.40.21"
+    },
+    {
+      "type": "library",
+      "name": "sentry-sdk[django]",
+      "version": "2.35.0",
+      "purl": "pkg:pypi/sentry-sdk[django]@2.35.0"
+    },
+    {
+      "type": "library",
+      "name": "pypdf",
+      "version": "5.9.0",
+      "purl": "pkg:pypi/pypdf@5.9.0"
+    },
+    {
+      "type": "library",
+      "name": "next",
+      "version": "16.3.0",
+      "scope": "required",
+      "purl": "pkg:npm/next@16.3.0"
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "19.2.0",
+      "scope": "required",
+      "purl": "pkg:npm/react@19.2.0"
+    },
+    {
+      "type": "library",
+      "name": "react-dom",
+      "version": "19.2.0",
+      "scope": "required",
+      "purl": "pkg:npm/react-dom@19.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/node",
+      "version": "24.3.0",
+      "scope": "optional",
+      "purl": "pkg:npm/%40types/node@24.3.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/react",
+      "version": "19.1.12",
+      "scope": "optional",
+      "purl": "pkg:npm/%40types/react@19.1.12"
+    },
+    {
+      "type": "library",
+      "name": "@types/react-dom",
+      "version": "19.1.9",
+      "scope": "optional",
+      "purl": "pkg:npm/%40types/react-dom@19.1.9"
+    },
+    {
+      "type": "library",
+      "name": "typescript",
+      "version": "5.8.3",
+      "scope": "optional",
+      "purl": "pkg:npm/typescript@5.8.3"
+    },
+    {
+      "type": "library",
+      "name": "@playwright/test",
+      "version": "1.55.0",
+      "scope": "optional",
+      "purl": "pkg:npm/%40playwright/test@1.55.0"
+    },
+    {
+      "type": "library",
+      "name": "@axe-core/playwright",
+      "version": "4.10.2",
+      "scope": "optional",
+      "purl": "pkg:npm/%40axe-core/playwright@4.10.2"
+    }
+  ]
+}

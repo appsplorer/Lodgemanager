@@ -1,0 +1,9 @@
+{
+  "name": "LodgeFlow",
+  "short_name": "LodgeFlow",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#f4f1e9",
+  "theme_color": "#102a43",
+  "description": "Private lodge administration with resilient offline browsing and sync."
+}

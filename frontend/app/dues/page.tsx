@@ -1,0 +1,1 @@
+import {AppShell} from '@/components/AppShell';import {DuesOperations} from '@/components/WorkflowTools';export default function Page(){return <AppShell><div className="page-heading"><div><span className="eyebrow">Lodge operations</span><h1>Dues</h1><p>Fast, audited workflows with encrypted offline continuity for routine work.</p></div></div><DuesOperations/></AppShell>}

@@ -1,0 +1,5140 @@
+{
+  "baseline": {
+    "product": "Quill of the Craft - Lodge Management System",
+    "version": "1.0",
+    "date": "2026-08-23",
+    "status": "FINAL BASELINE",
+    "requirement_count": 298,
+    "must_count": 258,
+    "should_count": 35,
+    "may_count": 5
+  },
+  "requirements": [
+    {
+      "id": "GEN-001",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "The delivered product MUST be a functioning multi-tenant SaaS, not a static prototype; primary screens must read and write real persisted data through authorized APIs.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-002",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "The product MUST provide the three solution layers: public website, tenant application and platform operator console.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-003",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "All tenant-owned data MUST be isolated server-side; frontend filtering alone is never sufficient tenant isolation.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-004",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "Critical mutations, exports, impersonation and configuration changes MUST be auditable.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-005",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "All MUST requirements in this specification MUST have test evidence before production sign-off.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-006",
+      "level": "SHOULD",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "The UI SHOULD present a coherent premium product experience across desktop, tablet and mobile.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-007",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "Optional extensions MUST be isolated behind configuration or feature flags where their availability varies by plan, provider or contract.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-008",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "The system MUST fail safely when mandatory production configuration or secrets are missing.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-009",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "User-visible operations MUST have clear loading, success, empty and error states; silent failure is not acceptable.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "GEN-010",
+      "level": "MUST",
+      "section_number": 1,
+      "section": "Product Vision, Scope and Quality Baseline",
+      "short_requirement": "The software MUST use original implementation and legally usable dependencies; dependency licences must be documented in the delivery package.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/app",
+        "qa"
+      ],
+      "acceptance_test_ids": [
+        "E2E-GEN-GEN-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-001",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "The backend MUST use Django 5+ and Django REST Framework or an equivalent maintained Django API layer, with Python 3.12+ for the production baseline unless the approved runtime matrix states otherwise.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-002",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "The frontend MUST use Next.js App Router with TypeScript and a production build pipeline.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-003",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "PostgreSQL MUST be the production system of record and MUST not be exposed directly to the public Internet.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-004",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "Redis MUST provide cache/queue support and MUST not be publicly exposed.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-005",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "Celery worker and Celery Beat (or equivalent) MUST run background and scheduled workloads outside web request threads.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-006",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "Private/generated files MUST support S3- compatible object storage; local volume storage MAY be used for development.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-007",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "Production containers MUST run as non- root users wherever technically practical.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-007"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-008",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "A reverse proxy/TLS termination layer MUST expose only intended web ports; database/cache ports remain private.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-008"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-009",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "The application MUST support separate local, staging and production configuration without committing secrets.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-009"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "ARC-010",
+      "level": "MUST",
+      "section_number": 2,
+      "section": "Solution Architecture and Environment Model",
+      "short_requirement": "Database migrations MUST run as a controlled one-shot release step before dependent web/worker processes are considered healthy.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "docker-compose.local.yml",
+        "docker-compose.prod.yml",
+        "backend/Dockerfile",
+        "frontend/Dockerfile"
+      ],
+      "acceptance_test_ids": [
+        "CI-ARCH-ARC-010"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-001",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Every tenant-owned API query and mutation MUST resolve an authorized tenant context from the authenticated user and server-side membership.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-002",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Users with access to multiple lodges MUST be able to switch active lodge without gaining access to lodges for which membership is absent.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-003",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Login MUST support configured username/email credentials and MUST not reveal whether a username or email exists through unsafe error differences.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-004",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "TOTP MFA enrollment, verification and enforcement MUST be supported, with server-side replay resistance and a secure recovery/reset process.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-005",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "MFA enrollment or reset MUST require recent password verification or equivalent strong re-authentication.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-006",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Invitations and password-setup/reset tokens MUST expire and be single-use.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-007",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Session timeout and optional tenant IP allowlist policies MUST be configurable and enforced server-side.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-008",
+      "level": "SHOULD",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Sensitive actions such as credential changes, impersonation and MFA reset SHOULD require step-up authentication.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-009",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Logout MUST terminate server/browser session state and handle unsynchronised offline work safely.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "IAM-010",
+      "level": "MUST",
+      "section_number": 3,
+      "section": "Multi-Tenancy, Identity, MFA and Session Security",
+      "short_requirement": "Authentication cookies MUST be Secure in production, HttpOnly where applicable, and configured with an appropriate SameSite policy.",
+      "implementation_evidence": [
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/security_policy.py",
+        "backend/platform_core/views.py",
+        "frontend/app/mfa/page.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-IAM-IAM-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-001",
+      "level": "MUST",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "Permissions MUST be enforced server-side for view/create/edit/delete/export/approve/admi n actions, not only by hiding UI controls.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-002",
+      "level": "MUST",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "Tenant administrators MUST be able to create custom tenant roles from allowed permission primitives.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-003",
+      "level": "MUST",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "Platform roles MUST separate support, billing, compliance and operations responsibilities to reduce unnecessary access to member PII and credentials.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-004",
+      "level": "MUST",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "A user MUST never assign a role or permission higher than the assigning user is authorized to grant.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-005",
+      "level": "SHOULD",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "Sensitive exports MAY require approval based on tenant policy, data type, record count or role.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-006",
+      "level": "MUST",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "Permission changes MUST invalidate or refresh authorization caches promptly.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-007",
+      "level": "MUST",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "Custom roles MUST remain scoped to the owning tenant.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RBAC-008",
+      "level": "MUST",
+      "section_number": 4,
+      "section": "Roles, Permissions and Approval Model",
+      "short_requirement": "Denied actions MUST return an appropriate 401/403/404 response without leaking cross-tenant object existence.",
+      "implementation_evidence": [
+        "backend/platform_core/domain/permissions.py",
+        "backend/platform_core/services/permissions.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-RBAC-RBAC-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-001",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "The public marketing site MUST be CMS- driven; core content must not require code changes to edit.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-002",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Page Studio MUST provide visual block- based editing with add/edit/duplicate/move/hide/delete operations and drag/drop reordering; administrators MUST NOT be required to edit raw JSON for ordinary use.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-003",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Page Studio MUST support at least hero, rich text, feature grid, statistics, image/text split, pricing, testimonials, FAQ, lead form and CTA blocks.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-004",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Editors MUST have desktop/tablet/mobile preview and draft/published state controls.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-005",
+      "level": "SHOULD",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "CMS changes SHOULD support version history or recoverable revisions for published pages.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-006",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "The media library MUST support validated upload, search/filter, preview, metadata editing, alt text/accessibility description, public/private designation and deletion.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-007",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Navigation management MUST provide visual ordering, nested/dropdown items, footer/legal/social groups and visibility controls.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-008",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Branding MUST include logo, favicon, theme colors and typography presets with accessible defaults.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-009",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Per-page SEO MUST include title, description, canonical URL, index/no-index, OpenGraph/Twitter metadata, social image and schema/structured-data settings where applicable.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-010",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "The platform MUST generate robots.txt and sitemap content and support 301/302 redirects, custom slugs and custom 404 content.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-011",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Lead forms MUST support configurable fields/validation, anti-abuse rate limiting, destination/routing and an operator lead inbox with status workflow.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-011"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-012",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Global announcements MUST support active windows, audience/placement configuration and safe enable/disable controls.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-012"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-013",
+      "level": "MUST",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Analytics/marketing pixels MUST be configurable and MUST respect consent settings where consent is required.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-013"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CMS-014",
+      "level": "MAY",
+      "section_number": 5,
+      "section": "Public Website, Visual CMS, SEO and Lead Capture",
+      "short_requirement": "Localization MAY provide translated page variants, locale switching and per-tenant defaults without duplicating site code.",
+      "implementation_evidence": [
+        "frontend/components/PageStudio.tsx",
+        "frontend/components/CmsManagers.tsx",
+        "frontend/components/PublicCmsBlocks.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CMS-CMS-014"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-001",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Authorized platform admins MUST be able to create, activate, suspend and disable tenants and assign plans/feature entitlements.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-002",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Tenant suspension MUST prevent normal enant use without deleting tenant data.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-003",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Platform user administration MUST support lock/unlock, role assignment and MFA policy enforcement.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-004",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Support impersonation MUST require a reason, show a persistent impersonation banner, be time-bounded and be fully audited.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-005",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Billing administration MUST show subscription state, plan, customer/provider references and relevant billing events without exposing raw secrets.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-006",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Feature flags MUST be configurable globally and per tenant with safe default behaviour.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-007",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Encrypted provider credentials MUST support test/live separation, enable/disable, rotation and health status.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-008",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Operations views MUST expose audit, export, webhook, background-job and email-delivery logs appropriate to the operator role.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-009",
+      "level": "SHOULD",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Platform administrative destructive actions MUST use application-controlled confirmation dialogs with loading and error states rather than native browser prompts.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAD-010",
+      "level": "MUST",
+      "section_number": 6,
+      "section": "Platform Administration and Operator Console",
+      "short_requirement": "Billing-only roles MUST not receive member PII unless explicitly granted by a separate approved permission.",
+      "implementation_evidence": [
+        "frontend/app/platform-admin/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/platform_permissions.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PAD-PAD-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-001",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Tenant settings MUST include lodge name/number, address, jurisdiction and meeting defaults.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-002",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Each tenant MUST support logo/branding and an accessible theme preset or controlled theme customization.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-003",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Tenant admins MUST be able to define custom member fields with type, label, required/optional rule and display order where permitted.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-004",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Candidate stage definitions MUST be tenant-configurable while preserving referential history for existing candidates.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-005",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Dues settings MUST include currency, receipt prefix/sequence policy, proration/late-fee options and payment- method availability.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-006",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Tenant templates MUST support letterhead, minutes/summons, receipts and signature blocks using validated merge fields.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-007",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Security settings MUST include MFA policy, session timeout and optional IP allowlist.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-008",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Retention and anonymization controls MUST be configurable subject to operator/legal policy constraints.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "TAD-009",
+      "level": "MUST",
+      "section_number": 7,
+      "section": "Tenant Administration, Branding and Configuration",
+      "short_requirement": "Tenant settings changes MUST be audited with before/after values for non-secret fields and secret-safe metadata for credentials.",
+      "implementation_evidence": [
+        "frontend/app/settings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/validation.py"
+      ],
+      "acceptance_test_ids": [
+        "API-TAD-TAD-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DASH-001",
+      "level": "MUST",
+      "section_number": 8,
+      "section": "Dashboard, Workspace Navigation and Global Search",
+      "short_requirement": "Dashboard KPIs MUST derive from tenant data and respect user permissions.",
+      "implementation_evidence": [
+        "frontend/app/dashboard/page.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-DASH-DASH-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DASH-002",
+      "level": "MUST",
+      "section_number": 8,
+      "section": "Dashboard, Workspace Navigation and Global Search",
+      "short_requirement": "Baseline KPIs MUST include members, dues/arrears, attendance and candidates, plus actionable overdue alerts where data is available.",
+      "implementation_evidence": [
+        "frontend/app/dashboard/page.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-DASH-DASH-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DASH-003",
+      "level": "MUST",
+      "section_number": 8,
+      "section": "Dashboard, Workspace Navigation and Global Search",
+      "short_requirement": "Recent activity MUST be sourced from auditable events and filtered to the active tenant.",
+      "implementation_evidence": [
+        "frontend/app/dashboard/page.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-DASH-DASH-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DASH-004",
+      "level": "MUST",
+      "section_number": 8,
+      "section": "Dashboard, Workspace Navigation and Global Search",
+      "short_requirement": "Quick actions MUST only be shown/enabled when the user can complete the underlying action.",
+      "implementation_evidence": [
+        "frontend/app/dashboard/page.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-DASH-DASH-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DASH-005",
+      "level": "MUST",
+      "section_number": 8,
+      "section": "Dashboard, Workspace Navigation and Global Search",
+      "short_requirement": "Primary modules MUST remain reachable within a consistent workspace navigation model on desktop and mobile.",
+      "implementation_evidence": [
+        "frontend/app/dashboard/page.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-DASH-DASH-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DASH-006",
+      "level": "SHOULD",
+      "section_number": 8,
+      "section": "Dashboard, Workspace Navigation and Global Search",
+      "short_requirement": "Global search SHOULD return authorized members, candidates, meetings, documents and other configured entities without cross- tenant leakage.",
+      "implementation_evidence": [
+        "frontend/app/dashboard/page.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-DASH-DASH-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DASH-007",
+      "level": "MUST",
+      "section_number": 8,
+      "section": "Dashboard, Workspace Navigation and Global Search",
+      "short_requirement": "Dashboard queries SHOULD use bounded pagination/caching and must not load unbounded tenant datasets into the browser.",
+      "implementation_evidence": [
+        "frontend/app/dashboard/page.tsx",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-DASH-DASH-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-001",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Member records MUST support status lifecycle, contact information, key dates, tags/groups, notes and tenant-defined custom fields.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-002",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Member create/update MUST validate required fields, field formats and tenant ownership of related objects.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-003",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "The system MUST perform duplicate detection on configured identity/contact fields and warn before creating likely duplicates.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-004",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Authorized users MUST be able to merge duplicates using a controlled merge workflow that preserves required history and audit evidence.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-005",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Bulk actions MUST be bounded, permission-checked and auditable; large or sensitive exports MAY require approval.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-006",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "CSV/XLSX import MUST provide mapping, validation, preview, per-row errors and duplicate handling before commit.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-007",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Member export MUST support configured CSV/Excel/PDF views and record the exporter, filters, record count and timestamp.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-008",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Member attachments MUST be linked through the secure document system with ACL enforcement.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-009",
+      "level": "MUST",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Anonymization/deletion operations MUST protect financial, audit and governance integrity according to retention policy.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MEM-010",
+      "level": "SHOULD",
+      "section_number": 9,
+      "section": "Members CRM and Lifecycle Management",
+      "short_requirement": "Member activity/history SHOULD show relevant changes, meeting participation, dues and communications subject to permission.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MEM-MEM-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "OFF-001",
+      "level": "MUST",
+      "section_number": 10,
+      "section": "Officers, Terms and Governance Records",
+      "short_requirement": "Officer assignments MUST reference valid tenant members and tenant-scoped officer- role definitions.",
+      "implementation_evidence": [
+        "frontend/app/officers/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-OFF-OFF-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "OFF-002",
+      "level": "MUST",
+      "section_number": 10,
+      "section": "Officers, Terms and Governance Records",
+      "short_requirement": "Officer terms MUST record role, holder, start/end dates and status/history without overwriting prior terms.",
+      "implementation_evidence": [
+        "frontend/app/officers/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-OFF-OFF-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "OFF-003",
+      "level": "MUST",
+      "section_number": 10,
+      "section": "Officers, Terms and Governance Records",
+      "short_requirement": "The system MUST provide a current officer roster and historical archive.",
+      "implementation_evidence": [
+        "frontend/app/officers/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-OFF-OFF-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "OFF-004",
+      "level": "MUST",
+      "section_number": 10,
+      "section": "Officers, Terms and Governance Records",
+      "short_requirement": "Printable officer roster MUST use the tenant report/document branding standard.",
+      "implementation_evidence": [
+        "frontend/app/officers/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-OFF-OFF-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "OFF-005",
+      "level": "SHOULD",
+      "section_number": 10,
+      "section": "Officers, Terms and Governance Records",
+      "short_requirement": "Overlapping officer terms SHOULD be validated or explicitly confirmed where multiple holders are allowed by configuration.",
+      "implementation_evidence": [
+        "frontend/app/officers/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-OFF-OFF-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "OFF-006",
+      "level": "MAY",
+      "section_number": 10,
+      "section": "Officers, Terms and Governance Records",
+      "short_requirement": "Succession planning and nominations MAY be enabled as an extension without changing the core officer history model.",
+      "implementation_evidence": [
+        "frontend/app/officers/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/models.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-OFF-OFF-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-001",
+      "level": "MUST",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Candidate stages MUST be configurable per tenant and ordered.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-002",
+      "level": "MUST",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Candidate transition MUST be performed through a controlled server-side transition action, not by directly editing the stage field.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-003",
+      "level": "MUST",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Required tasks/milestones MUST be enforceable before a normal stage transition; privileged override MUST require permission and reason.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-004",
+      "level": "MUST",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Every stage transition MUST record previous stage, new stage, date/time and actor.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-005",
+      "level": "MUST",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Candidates MUST support one or more mentor assignments according to tenant policy.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-006",
+      "level": "MUST",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Tasks/checklists MUST support assignee, due date, status, notes and overdue detection.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-007",
+      "level": "SHOULD",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Pipeline analytics MUST include stage counts and SHOULD include conversion, time-in-stage and mentor workload.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "CAN-008",
+      "level": "MUST",
+      "section_number": 11,
+      "section": "Candidates, Degree Pipeline, Mentors and Milestones",
+      "short_requirement": "Candidate records and analytics MUST remain tenant-scoped and permission- scoped.",
+      "implementation_evidence": [
+        "frontend/components/WorkflowTools.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-CAN-CAN-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-001",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Meetings MUST support date/time, location, type/status and tenant-configured defaults.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-002",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Agenda builder MUST support standard and custom ordered agenda items.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-003",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Recurring meeting rules MUST be storable and, when enabled, future meetings MUST be generated idempotently without duplicates.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-004",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Attendance MUST support at least present/absent/excused states and MUST prevent duplicate member attendance rows for the same meeting.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-005",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Visitors MUST be recorded separately from members and linked to the meeting with relevant lodge/contact/notes fields as configured.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-006",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Minutes MUST follow Draft -> Review -> Approved -> Locked states with version history.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-007",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Approved/locked minutes MUST not be silently edited; changes require a controlled reopen/new-version process with permission and audit reason.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-008",
+      "level": "MUST",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "The system MUST generate branded minutes, summons/notice, attendance sheet and meeting pack PDFs.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-009",
+      "level": "SHOULD",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "Meeting pack generation SHOULD combine agenda, notices, attendance template, approved prior minutes and configured attachments where applicable.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "MTG-010",
+      "level": "MAY",
+      "section_number": 12,
+      "section": "Meetings, Agenda, Attendance, Visitors and Minutes",
+      "short_requirement": "QR check-in MAY be enabled as an extension while preserving manual attendance controls.",
+      "implementation_evidence": [
+        "frontend/app/meetings/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/workflows.py",
+        "backend/platform_core/services/pdfs.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-MTG-MTG-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-001",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Dues cycles MUST have explicit period/status and generate tenant-scoped member assessments according to configured rules.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-002",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Assessment generation MUST be idempotent so retrying a cycle generation does not create duplicate assessments.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-003",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Proration and late-fee calculations MUST be deterministic, documented and testable against fixtures.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-004",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Paid assessments MUST not allow destructive edits to amount/terms; corrections require adjustment/reversal/waiver workflows.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-005",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Waivers MUST require appropriate permission and record reason/actor/date.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-006",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Manual payments MUST support configured methods such as cash, bank transfer and cheque and MUST create a single payment record and receipt.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-007",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Receipt numbers MUST be server- generated, unique within tenant policy and race-safe under concurrent payment creation.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-008",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Member statements MUST reconcile assessments, payments, waivers/adjustments and outstanding balance.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-009",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Arrears reporting MUST support aging/status and member drill-down.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-010",
+      "level": "SHOULD",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Expenses and categories SHOULD support date, category, amount, payee, description, attachment and approval fields as configured.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-011",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Finance exports MUST preserve decimal/currency precision and use tenant locale/date/currency configuration.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-011"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "FIN-012",
+      "level": "MUST",
+      "section_number": 13,
+      "section": "Dues, Assessments, Payments, Receipts and Finance",
+      "short_requirement": "Financial actions MUST be audited and high-risk finance functions MUST remain online-only when offline/PWA mode is available.",
+      "implementation_evidence": [
+        "frontend/app/dues/page.tsx",
+        "frontend/app/finance/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/domain/finance.py"
+      ],
+      "acceptance_test_ids": [
+        "API-FIN-FIN-012"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-001",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Private documents MUST be tenant-scoped and protected by folder/document ACLs and server-authorized download.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-002",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Uploads MUST validate filename, extension/MIME agreement, magic signature for supported types, size and archive-expansion limits before acceptance.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-003",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Production uploads MUST support ClamAV or equivalent malware scanning; when fail- closed mode is configured, unavailable scanning MUST reject/quarantine uploads.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-004",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Private storage objects MUST not be made public merely to enable browser download.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-005",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Deleting an application document MUST delete or lifecycle the corresponding storage object according to retention policy.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-006",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Templates MUST use allowlisted merge fields and tenant branding; unknown/unsafe merge fields MUST fail clearly.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-007",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Generated PDFs MUST be stored with metadata linking tenant, source entity, template/version, creator and generated timestamp.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-008",
+      "level": "MUST",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Media assets MUST require alt text/accessibility metadata for meaningful public images.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DOC-009",
+      "level": "MAY",
+      "section_number": 14,
+      "section": "Documents, Templates, Media and Secure File Handling",
+      "short_requirement": "Full-text search and OCR MAY be enabled as an extension; OCR output MUST not bypass document ACLs.",
+      "implementation_evidence": [
+        "frontend/app/documents/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "API-DOC-DOC-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-001",
+      "level": "MUST",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Email templates MUST support global and tenant variants, validated merge fields, preview and test-send.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-002",
+      "level": "MUST",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Campaign segmentation MUST be applied server-side and support at least member status, dues/arrears state, candidate status and groups/tags where data is available.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-003",
+      "level": "MUST",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Before send/schedule, the UI MUST show a recipient preview/count derived from the exact segment query.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-004",
+      "level": "MUST",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Campaigns MUST have Draft/Scheduled/Sending/Sent/Failed/Cance lled lifecycle and MUST not allow clients to fake a sent status.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-005",
+      "level": "MUST",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Scheduled campaigns MUST be dispatched by the background job system and be idempotent under retry.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-006",
+      "level": "MUST",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Delivery logs MUST record recipient, provider/message reference, status, attempts and error metadata without exposing message secrets.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-007",
+      "level": "SHOULD",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Transient delivery failures SHOULD be retried with bounded backoff; permanent failures should be recorded and surfaced.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-008",
+      "level": "MUST",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "Communication preferences/consent MUST be respected where legally or contractually required, while required administrative notices may follow tenant policy.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "COM-009",
+      "level": "MAY",
+      "section_number": 15,
+      "section": "Communications, Templates, Segmentation and Delivery",
+      "short_requirement": "SMS MAY be enabled through an approved provider and MUST use the same permission, audit and template principles.",
+      "implementation_evidence": [
+        "frontend/app/communications/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/communications.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "E2E-COM-COM-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-001",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "The Reports workspace MUST provide membership, attendance, candidate pipeline, finance and compliance report families.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-002",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Every report MUST apply active tenant and permission scoping before aggregation.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-003",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Reports MUST support relevant date range, status and domain-specific filters and MUST disclose the applied filter set in the output metadata.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-004",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Where useful, reports MUST provide summary KPIs, trend visualization and detail tables; totals MUST reconcile to source records.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-005",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Exports MUST support PDF plus CSV/Excel where tabular data is meaningful.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-006",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Generated report files MUST be auditable with creator/schedule, tenant, report ID, filter parameters, generated timestamp, record count and file hash where practical.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-007",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Scheduled report definitions MUST be executed by Celery Beat/background jobs; merely storing a cron string is not sufficient.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-008",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Scheduled monthly packs MUST generate selected attachments, store them and deliver them to the configured authorized recipients, with delivery logs and retry behaviour.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-009",
+      "level": "SHOULD",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Reports over a configurable sensitivity/record threshold MAY require approval before generation/download.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-010",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Large report generation MUST run asynchronously with progress/status rather than blocking interactive web workers.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-011",
+      "level": "SHOULD",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Saved report views SHOULD retain filters, grouping, sorting and selected columns and remain private/shared according to permissions.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-011"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "REP-012",
+      "level": "MUST",
+      "section_number": 16,
+      "section": "Reports, Analytics, Exports and Scheduled Packs",
+      "short_requirement": "Analytics charts MUST not use color alone to convey meaning and must include labels/tooltips or accessible equivalents.",
+      "implementation_evidence": [
+        "frontend/app/reports/page.tsx",
+        "backend/platform_core/views.py",
+        "backend/platform_core/tasks.py"
+      ],
+      "acceptance_test_ids": [
+        "QA-REPORT-REP-012"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-001",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Formal PDF outputs MUST use tenant branding, lodge name/number and a consistent report/document template.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-002",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Default page size MUST be configurable between A4 and Letter; A4 is the default. Wide tabular reports SHOULD automatically use landscape orientation.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-003",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Multi-page reports MUST include repeating headers, page numbers, generated timestamp and report period/filter metadata.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-004",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Tables MUST avoid clipped text, orphaned headers and unreadably small type; long tables must repeat headings and paginate cleanly.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-005",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Charts MUST include title, units, labels/legend and accessible non-color cues where necessary.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-006",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Executive/pack reports MUST include a cover/header section and executive summary before detailed sections.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-007",
+      "level": "SHOULD",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Confidential reports SHOULD carry a configurable confidentiality classification in the header/footer.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-008",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Generated text and tables MUST remain selectable/searchable in the PDF; reports SHOULD not be delivered as rasterized screenshots.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-009",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Financial outputs MUST format currency consistently and include totals/subtotals with clear sign conventions.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "RPTFMT-010",
+      "level": "MUST",
+      "section_number": 17,
+      "section": "Professional Report and Generated-Document Standards",
+      "short_requirement": "Generated file names MUST be safe, deterministic and meaningful, including tenant/report/date identifiers without leaking unnecessary PII.",
+      "implementation_evidence": [
+        "backend/platform_core/services/pdfs.py",
+        "docs/generated-samples"
+      ],
+      "acceptance_test_ids": [
+        "QA-PDF-RPTFMT-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-001",
+      "level": "MUST",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "All mutations of protected business records MUST create an audit event containing tenant, actor, action, object identity, timestamp and safe change metadata.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-002",
+      "level": "MUST",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "Exports, impersonation, role/permission changes, credential changes and security- policy changes MUST be audited.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-003",
+      "level": "MUST",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "Audit records MUST be append-only to normal application roles; corrections must be additive rather than editing prior events.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-004",
+      "level": "SHOULD",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "The system SHOULD implement hash chaining or equivalent tamper-evidence for high-value audit events.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-005",
+      "level": "MUST",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "Audit viewers MUST support date, actor, module/action and object filters while remaining tenant/role scoped.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-006",
+      "level": "SHOULD",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "Sensitive export requests SHOULD support approval with requester, reason, approver, decision and expiry.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-007",
+      "level": "MUST",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "Export logs MUST record report/export type, filters, record count, format, requester, approver (if any), timestamp and result.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "AUD-008",
+      "level": "MUST",
+      "section_number": 18,
+      "section": "Audit, Compliance, Sensitive Exports and Impersonation",
+      "short_requirement": "Secret values, passwords and full payment credentials MUST never be written into audit or application logs.",
+      "implementation_evidence": [
+        "backend/platform_core/services/audit.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-AUD-AUD-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-001",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Stripe MUST support subscription checkout, monthly/annual plans as configured, customer portal and relevant webhook- driven subscription state updates.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-002",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "PayMongo and Xendit MUST support configured one-off payment requests/links for tenant financial operations where enabled.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-003",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Provider credentials and webhook secrets MUST be encrypted at rest, separated by test/live mode and never returned to the frontend after storage.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-004",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "A local payment-request record MUST be persisted before accepting asynchronous provider settlement, including tenant, amount, currency, internal reference, provider reference and mode.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-005",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Webhook tenant resolution MUST use signed tenant/environment-scoped URLs and/or verified provider metadata; the system MUST NOT depend on providers sending custom application headers they do not control.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-006",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Webhook signatures/tokens MUST be verified before business reconciliation.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-007",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Webhook processing MUST be idempotent and race-safe; duplicate/replayed events MUST never double-credit a payment or issue duplicate receipts.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-007"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-008",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Amount, currency, mode and provider reference MUST be reconciled; mismatches/unrecognized payments MUST be quarantined for review rather than silently applied.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-008"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-009",
+      "level": "SHOULD",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Webhook HTTP handlers SHOULD verify -> persist event -> acknowledge quickly -> perform heavier reconciliation in background.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-009"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-010",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Checkout/portal return URLs MUST be validated against approved origins and HTTPS requirements in production.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-010"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PAY-011",
+      "level": "MUST",
+      "section_number": 19,
+      "section": "Subscription Billing and Payment Provider Integrations",
+      "short_requirement": "Provider retry/replay tooling MUST preserve idempotency and full audit/log history.",
+      "implementation_evidence": [
+        "backend/platform_core/services/payments.py",
+        "backend/platform_core/services/webhook_processing.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PAY-PAY-011"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-001",
+      "level": "SHOULD",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "The web application SHOULD provide installable PWA shell caching for repeat navigation on supported browsers.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-002",
+      "level": "MUST",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "Private API data MUST NOT be stored unencrypted in browser CacheStorage.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-003",
+      "level": "MUST",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "If offline private snapshots are supported, they MUST be encrypted at rest in browser storage and bound to the authenticated user/tenant context.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-004",
+      "level": "MUST",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "Only an explicit allowlist of low-risk CRUD operations MAY queue offline; payments, waivers, credentials, MFA, impersonation, approvals, bulk privacy actions and file uploads MUST remain online-only.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-005",
+      "level": "MUST",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "Queued writes MUST use idempotency keys so replay cannot create duplicates.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-006",
+      "level": "MUST",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "Offline edits MUST carry a source version/updated_at value; stale replay MUST return a conflict (for example 409) instead of silently overwriting newer server data.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-007",
+      "level": "MUST",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "The UI MUST surface synchronization state, failures and conflicts and MUST not silently drop unsynchronized changes.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PWA-008",
+      "level": "MUST",
+      "section_number": 20,
+      "section": "Offline/PWA Continuity, Synchronisation and Conflict Handling",
+      "short_requirement": "Logout MUST warn before discarding unsynchronized work and clear/decryptable user-bound private offline data according to policy.",
+      "implementation_evidence": [
+        "frontend/lib/offline.ts",
+        "frontend/lib/api.ts",
+        "frontend/public/sw.js",
+        "frontend/components/OfflineSyncProvider.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-PWA-PWA-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DATA-001",
+      "level": "MUST",
+      "section_number": 21,
+      "section": "Data Import, Bulk Operations, Search and Saved Views",
+      "short_requirement": "Imports MUST validate file type, file size, headers, row count and field values before commit.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/components/WorkflowTools.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-DATA-DATA-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DATA-002",
+      "level": "MUST",
+      "section_number": 21,
+      "section": "Data Import, Bulk Operations, Search and Saved Views",
+      "short_requirement": "CSV/XLSX imports MUST show mapping and preview plus row-level errors; invalid rows MUST not be silently accepted.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/components/WorkflowTools.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-DATA-DATA-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DATA-003",
+      "level": "SHOULD",
+      "section_number": 21,
+      "section": "Data Import, Bulk Operations, Search and Saved Views",
+      "short_requirement": "Imports SHOULD support dry-run/transactional commit so failed batches do not leave partially unpredictable state.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/components/WorkflowTools.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-DATA-DATA-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DATA-004",
+      "level": "MUST",
+      "section_number": 21,
+      "section": "Data Import, Bulk Operations, Search and Saved Views",
+      "short_requirement": "Bulk operations MUST display impacted record count and require explicit confirmation for destructive/high-impact actions.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/components/WorkflowTools.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-DATA-DATA-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DATA-005",
+      "level": "MUST",
+      "section_number": 21,
+      "section": "Data Import, Bulk Operations, Search and Saved Views",
+      "short_requirement": "Advanced data tables MUST support server-compatible filtering, sorting, pagination and saved views for major modules.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/components/WorkflowTools.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-DATA-DATA-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DATA-006",
+      "level": "SHOULD",
+      "section_number": 21,
+      "section": "Data Import, Bulk Operations, Search and Saved Views",
+      "short_requirement": "Inline editing MAY be offered for low-risk fields but MUST apply the same server validation/RBAC/audit controls as full forms.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/components/WorkflowTools.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-DATA-DATA-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "DATA-007",
+      "level": "MUST",
+      "section_number": 21,
+      "section": "Data Import, Bulk Operations, Search and Saved Views",
+      "short_requirement": "No list/search endpoint may return ounded tenant datasets by default.",
+      "implementation_evidence": [
+        "backend/platform_core/views.py",
+        "frontend/components/WorkflowTools.tsx"
+      ],
+      "acceptance_test_ids": [
+        "API-DATA-DATA-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "JOB-001",
+      "level": "MUST",
+      "section_number": 22,
+      "section": "Background Jobs, Notifications and Scheduling",
+      "short_requirement": "Long-running PDF/report, campaign, import and reconciliation work MUST execute outside synchronous web requests.",
+      "implementation_evidence": [
+        "backend/platform_core/tasks.py",
+        "backend/lodgeflow/celery.py",
+        "docker-compose.prod.yml"
+      ],
+      "acceptance_test_ids": [
+        "INT-JOB-JOB-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "JOB-002",
+      "level": "MUST",
+      "section_number": 22,
+      "section": "Background Jobs, Notifications and Scheduling",
+      "short_requirement": "Scheduled tasks MUST use a single authoritative scheduler/locking strategy to prevent duplicate execution.",
+      "implementation_evidence": [
+        "backend/platform_core/tasks.py",
+        "backend/lodgeflow/celery.py",
+        "docker-compose.prod.yml"
+      ],
+      "acceptance_test_ids": [
+        "INT-JOB-JOB-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "JOB-003",
+      "level": "MUST",
+      "section_number": 22,
+      "section": "Background Jobs, Notifications and Scheduling",
+      "short_requirement": "Jobs MUST be idempotent or carry idempotency/deduplication guards where retries can occur.",
+      "implementation_evidence": [
+        "backend/platform_core/tasks.py",
+        "backend/lodgeflow/celery.py",
+        "docker-compose.prod.yml"
+      ],
+      "acceptance_test_ids": [
+        "INT-JOB-JOB-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "JOB-004",
+      "level": "SHOULD",
+      "section_number": 22,
+      "section": "Background Jobs, Notifications and Scheduling",
+      "short_requirement": "Retryable jobs SHOULD use bounded exponential backoff and terminal failure state after configured attempts.",
+      "implementation_evidence": [
+        "backend/platform_core/tasks.py",
+        "backend/lodgeflow/celery.py",
+        "docker-compose.prod.yml"
+      ],
+      "acceptance_test_ids": [
+        "INT-JOB-JOB-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "JOB-005",
+      "level": "MUST",
+      "section_number": 22,
+      "section": "Background Jobs, Notifications and Scheduling",
+      "short_requirement": "Operators MUST be able to see job status/failures and safely retry eligible failed jobs.",
+      "implementation_evidence": [
+        "backend/platform_core/tasks.py",
+        "backend/lodgeflow/celery.py",
+        "docker-compose.prod.yml"
+      ],
+      "acceptance_test_ids": [
+        "INT-JOB-JOB-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "JOB-006",
+      "level": "MUST",
+      "section_number": 22,
+      "section": "Background Jobs, Notifications and Scheduling",
+      "short_requirement": "Background jobs MUST re-validate tenant context and permissions/business invariants; they may not trust stale browser data.",
+      "implementation_evidence": [
+        "backend/platform_core/tasks.py",
+        "backend/lodgeflow/celery.py",
+        "docker-compose.prod.yml"
+      ],
+      "acceptance_test_ids": [
+        "INT-JOB-JOB-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-001",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "The production backend MUST expose documented API contracts for all UI- required operations; API documentation MUST be delivered.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-002",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "API errors MUST use consistent status codes and safe machine-readable error bodies without stack traces/secrets in production.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-003",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "List APIs MUST support bounded pagination and documented filtering/sorting semantics.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-004",
+      "level": "SHOULD",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "Mutation endpoints that may be retried SHOULD support idempotency keys where duplicate business records would be harmful.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-005",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "Browser mutations MUST be protected against CSRF according to the selected authentication model.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-006",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "CORS MUST use an explicit production allowlist; wildcard credentialed origins are prohibited.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-007",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "External webhook endpoints MUST be provider-authenticated, rate-protected and idempotent.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-008",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "Health/readiness endpoints MUST distinguish application readiness from mere process liveness.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "API-009",
+      "level": "MUST",
+      "section_number": 23,
+      "section": "API, Webhooks and Integration Contracts",
+      "short_requirement": "A versioning/deprecation strategy MUST be documented before any public third-party API is declared stable.",
+      "implementation_evidence": [
+        "backend/lodgeflow/urls.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/webhook_processing.py"
+      ],
+      "acceptance_test_ids": [
+        "API-CONTRACT-API-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-001",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Security design and QA MUST address common OWASP web risks including broken access control, injection, XSS, CSRF, insecure design, authentication failures and SSRF/open redirects where applicable.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-002",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Secrets MUST be supplied through environment/secret management and MUST never be committed to the repository.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-003",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Provider credentials and sensitive configuration values MUST use authenticated encryption at rest with key material separated from ciphertext storage.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-004",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Production MUST enforce HTTPS and appropriate security headers including HSTS where deployment permits, clickjacking protection, MIME-sniff prevention and a deliberate CSP strategy.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-005",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Rate limiting MUST protect authentication, public forms, sensitive endpoints and abuse-prone APIs using shared state suitable for multi-process deployment.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-006",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "File upload validation/malware scanning MUST follow Section 14 and must not trust browser-provided MIME alone.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-007",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Application/database/worker service accounts MUST follow least privilege; production containers SHOULD run non- root.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-008",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Dependency and container vulnerability scanning MUST be part of CI/release evidence, with critical/high findings triaged before release.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-009",
+      "level": "MUST",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Sensitive logs MUST be redacted; no passwords, tokens, full card/payment credentials or encryption keys may appear in logs.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "SEC-010",
+      "level": "SHOULD",
+      "section_number": 24,
+      "section": "Security Engineering and Application Hardening",
+      "short_requirement": "Security-relevant administrative changes MUST generate audit events and SHOULD trigger alerts for selected high-risk events.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/middleware.py",
+        "backend/platform_core/validation.py",
+        "backend/platform_core/services/file_security.py"
+      ],
+      "acceptance_test_ids": [
+        "SEC-SUITE-SEC-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PRIV-001",
+      "level": "MUST",
+      "section_number": 25,
+      "section": "Privacy, Retention, Data Integrity and Lifecycle Controls",
+      "short_requirement": "Tenant data MUST be logically isolated in storage, cache, background jobs, exports and browser offline stores.",
+      "implementation_evidence": [
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/audit.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PRIV-PRIV-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PRIV-002",
+      "level": "MUST",
+      "section_number": 25,
+      "section": "Privacy, Retention, Data Integrity and Lifecycle Controls",
+      "short_requirement": "Retention policies MUST be configurable by data category where operationally appropriate and must not silently erase protected financial/audit records.",
+      "implementation_evidence": [
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/audit.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PRIV-PRIV-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PRIV-003",
+      "level": "MUST",
+      "section_number": 25,
+      "section": "Privacy, Retention, Data Integrity and Lifecycle Controls",
+      "short_requirement": "Member anonymization/deletion MUST remove or de-identify unnecessary PII while preserving required relational, financial and audit integrity.",
+      "implementation_evidence": [
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/audit.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PRIV-PRIV-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PRIV-004",
+      "level": "MUST",
+      "section_number": 25,
+      "section": "Privacy, Retention, Data Integrity and Lifecycle Controls",
+      "short_requirement": "Exports of personal/sensitive data MUST be permission-controlled and audited.",
+      "implementation_evidence": [
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/audit.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PRIV-PRIV-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PRIV-005",
+      "level": "MUST",
+      "section_number": 25,
+      "section": "Privacy, Retention, Data Integrity and Lifecycle Controls",
+      "short_requirement": "Timestamps MUST be stored consistently (preferably UTC) and rendered using tenant/user timezone settings.",
+      "implementation_evidence": [
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/audit.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PRIV-PRIV-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PRIV-006",
+      "level": "MUST",
+      "section_number": 25,
+      "section": "Privacy, Retention, Data Integrity and Lifecycle Controls",
+      "short_requirement": "Currency/decimal calculations MUST use decimal-safe numeric types rather than binary floating-point for financial totals.",
+      "implementation_evidence": [
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/audit.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PRIV-PRIV-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PRIV-007",
+      "level": "MUST",
+      "section_number": 25,
+      "section": "Privacy, Retention, Data Integrity and Lifecycle Controls",
+      "short_requirement": "Tenant foreign-key relationships MUST be validated so objects from another tenant cannot be attached through manipulated IDs.",
+      "implementation_evidence": [
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py",
+        "backend/platform_core/services/audit.py"
+      ],
+      "acceptance_test_ids": [
+        "API-PRIV-PRIV-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-001",
+      "level": "MUST",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "The application MUST be responsive across phone, tablet and desktop breakpoints without horizontal clipping of primary workflows.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-001"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-002",
+      "level": "MUST",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "The UI MUST use a shared design system for typography, spacing, forms, buttons, tables, dialogs, alerts and status badges.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-002"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-003",
+      "level": "MUST",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "Interactive controls MUST provide hover/focus/disabled/loading states and clear validation/errors.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-003"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-004",
+      "level": "MUST",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "Keyboard navigation, visible focus, semantic headings/form labels and sufficient color contrast MUST meet WCAG 2.2 AA intent for primary workflows.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-004"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-005",
+      "level": "MUST",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "Animations/micro-interactions SHOULD use Framer Motion or equivalent and MUST respect prefers-reduced-motion.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-005"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-006",
+      "level": "MUST",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "Destructive actions MUST use branded confirmation UI with meaningful consequences and in-progress/error handling.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-006"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-007",
+      "level": "MUST",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "Advanced tables MUST support filtering, sorting, pagination and saved views; dense data should remain usable on smaller screens.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-007"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-008",
+      "level": "SHOULD",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "Empty states MUST explain what the module does and, when authorized, provide the next useful action.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-008"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-009",
+      "level": "SHOULD",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "Toast/notification messages MUST be actionable, concise and must not be the only place critical error detail is available.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-009"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "UX-010",
+      "level": "SHOULD",
+      "section_number": 26,
+      "section": "UI/UX, Accessibility, Responsive Behaviour and Design System",
+      "short_requirement": "At least five curated accessible theme presets SHOULD be available or equivalent branding flexibility must be provided.",
+      "implementation_evidence": [
+        "frontend/app/globals.css",
+        "frontend/components/AppDialog.tsx",
+        "frontend/components/AppShell.tsx",
+        "frontend/components/PageStudio.tsx"
+      ],
+      "acceptance_test_ids": [
+        "E2E-A11Y-UX-010"
+      ],
+      "latest_result": "PENDING_FULL_INTEGRATION",
+      "production_acceptance": false
+    },
+    {
+      "id": "PERF-001",
+      "level": "SHOULD",
+      "section_number": 27,
+      "section": "Performance, Scalability and Availability Targets",
+      "short_requirement": "On the reference production profile (approximately 8 vCPU, 12 GB RAM, NVMe), standard cached/list CRUD API requests SHOULD achieve p95 server response below 700 ms under representative load excluding third-party provider latency.",
+      "implementation_evidence": [
+        "backend/platform_core/read_cache.py",
+        "frontend/next.config.mjs",
+        "frontend/lib/offline.ts"
+      ],
+      "acceptance_test_ids": [
+        "PERF-LOAD-PERF-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PERF-002",
+      "level": "SHOULD",
+      "section_number": 27,
+      "section": "Performance, Scalability and Availability Targets",
+      "short_requirement": "Primary page navigation SHOULD target Largest Contentful Paint below 2.5 s on typical broadband for warmed/static assets.",
+      "implementation_evidence": [
+        "backend/platform_core/read_cache.py",
+        "frontend/next.config.mjs",
+        "frontend/lib/offline.ts"
+      ],
+      "acceptance_test_ids": [
+        "PERF-LOAD-PERF-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PERF-003",
+      "level": "MUST",
+      "section_number": 27,
+      "section": "Performance, Scalability and Availability Targets",
+      "short_requirement": "Operations expected to exceed 5 seconds (large reports, exports, imports, bulk sends) MUST be asynchronous.",
+      "implementation_evidence": [
+        "backend/platform_core/read_cache.py",
+        "frontend/next.config.mjs",
+        "frontend/lib/offline.ts"
+      ],
+      "acceptance_test_ids": [
+        "PERF-LOAD-PERF-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PERF-004",
+      "level": "MUST",
+      "section_number": 27,
+      "section": "Performance, Scalability and Availability Targets",
+      "short_requirement": "Major list endpoints MUST use pagination and appropriate database indexes; N+1 query patterns in high-traffic views MUST be addressed.",
+      "implementation_evidence": [
+        "backend/platform_core/read_cache.py",
+        "frontend/next.config.mjs",
+        "frontend/lib/offline.ts"
+      ],
+      "acceptance_test_ids": [
+        "PERF-LOAD-PERF-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PERF-005",
+      "level": "SHOULD",
+      "section_number": 27,
+      "section": "Performance, Scalability and Availability Targets",
+      "short_requirement": "The release load test SHOULD cover at least 100 tenants, 50,000 members, 250,000 attendance rows, 100,000 assessments/payments, 20,000 documents metadata rows and 100 concurrent sessions using generated data.",
+      "implementation_evidence": [
+        "backend/platform_core/read_cache.py",
+        "frontend/next.config.mjs",
+        "frontend/lib/offline.ts"
+      ],
+      "acceptance_test_ids": [
+        "PERF-LOAD-PERF-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PERF-006",
+      "level": "MUST",
+      "section_number": 27,
+      "section": "Performance, Scalability and Availability Targets",
+      "short_requirement": "The system MUST degrade safely when Redis, object storage, email or a payment provider is temporarily unavailable and must surface retryable failures rather than corrupting state.",
+      "implementation_evidence": [
+        "backend/platform_core/read_cache.py",
+        "frontend/next.config.mjs",
+        "frontend/lib/offline.ts"
+      ],
+      "acceptance_test_ids": [
+        "PERF-LOAD-PERF-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "PERF-007",
+      "level": "SHOULD",
+      "section_number": 27,
+      "section": "Performance, Scalability and Availability Targets",
+      "short_requirement": "A monthly availability target of 99.5% excluding agreed maintenance SHOULD be used for the baseline single-region service unless a different SLA is contracted.",
+      "implementation_evidence": [
+        "backend/platform_core/read_cache.py",
+        "frontend/next.config.mjs",
+        "frontend/lib/offline.ts"
+      ],
+      "acceptance_test_ids": [
+        "PERF-LOAD-PERF-007"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "OBS-001",
+      "level": "MUST",
+      "section_number": 28,
+      "section": "Observability, Logging, Health and Operations",
+      "short_requirement": "Production MUST emit structured logs with timestamp, severity, service and correlation/request ID where applicable.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "OPS-OBS-OBS-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "OBS-002",
+      "level": "SHOULD",
+      "section_number": 28,
+      "section": "Observability, Logging, Health and Operations",
+      "short_requirement": "Unhandled application errors SHOULD be reported to Sentry or an equivalent error- tracking system with PII minimization.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "OPS-OBS-OBS-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "OBS-003",
+      "level": "MUST",
+      "section_number": 28,
+      "section": "Observability, Logging, Health and Operations",
+      "short_requirement": "Liveness and readiness checks MUST cover web/backend and essential dependencies required to serve traffic.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "OPS-OBS-OBS-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "OBS-004",
+      "level": "MUST",
+      "section_number": 28,
+      "section": "Observability, Logging, Health and Operations",
+      "short_requirement": "Operators MUST be able to inspect failed background jobs, webhook events and email delivery outcomes.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "OPS-OBS-OBS-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "OBS-005",
+      "level": "SHOULD",
+      "section_number": 28,
+      "section": "Observability, Logging, Health and Operations",
+      "short_requirement": "Alerts SHOULD cover service-down, repeated job failures, database/storage capacity, certificate expiry and abnormal authentication/security events.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "OPS-OBS-OBS-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "OBS-006",
+      "level": "MUST",
+      "section_number": 28,
+      "section": "Observability, Logging, Health and Operations",
+      "short_requirement": "Logs and traces MUST not expose secrets or unnecessary PII.",
+      "implementation_evidence": [
+        "backend/lodgeflow/settings.py",
+        "backend/platform_core/models.py",
+        "backend/platform_core/views.py"
+      ],
+      "acceptance_test_ids": [
+        "OPS-OBS-OBS-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-001",
+      "level": "MUST",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "Production PostgreSQL MUST be backed up automatically at least daily, with backups stored separately from the primary VPS/database.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-002",
+      "level": "MUST",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "Backup archives MUST be encrypted in transit and at rest and protected by access controls separate from normal application users.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-003",
+      "level": "MUST",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "Critical private documents/generated files MUST be protected by object-storage versioning/backup or equivalent recovery mechanism.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-004",
+      "level": "MUST",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "Restore tooling MUST verify checksums/integrity and require explicit confirmation before destructive restore ons.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-005",
+      "level": "MUST",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "A full non-production restore drill MUST prove database and representative files can be restored and reconciled.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-006",
+      "level": "SHOULD",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "Baseline recovery targets SHOULD be RPO <= 24 hours and RTO <= 4 hours after infrastructure/access is available, unless a stricter SLA is contracted.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-007",
+      "level": "MUST",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "Backups MUST not be considered complete until monitoring can detect failed backup jobs.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-007"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DR-008",
+      "level": "MUST",
+      "section_number": 29,
+      "section": "Backup, Restore and Disaster Recovery",
+      "short_requirement": "A documented disaster-recovery runbook MUST be delivered and reviewed before production sign-off.",
+      "implementation_evidence": [
+        "scripts/backup.sh",
+        "scripts/restore.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md"
+      ],
+      "acceptance_test_ids": [
+        "DR-RESTORE-DR-008"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-001",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Local development MUST be reproducible through Docker Compose or an equivalent documented stack including PostgreSQL, Redis, backend, frontend and worker services.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-002",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Production MUST use a distinct production Compose/deployment configuration and production-safe settings.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-003",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "CI MUST run backend checks/tests, migration drift check, frontend syntax/typecheck/build and security/dependency checks appropriate to the release.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-004",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Staging MUST use production-like PostgreSQL, Redis, Celery, storage, email sandbox/test and payment-provider sandbox integrations before release.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-005",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Database migrations MUST be committed, reviewed and tested on both a fresh database and an upgrade path from the prior release.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-006",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Deployment MUST not publish a release healthy until migrations and essential health checks succeed.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-007",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Rollback procedures MUST distinguish application rollback from non-reversible database migration; migration rollback risk must be documented per release.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-007"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-008",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Secrets MUST be injected at deployment and not embedded in images or repository files.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-008"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-009",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "Only intended public ports (typically 80/443 and restricted SSH) SHOULD be externally reachable; PostgreSQL/Redis MUST remain private.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-009"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEV-010",
+      "level": "MUST",
+      "section_number": 30,
+      "section": "DevOps, Environments, Deployment and Release Management",
+      "short_requirement": "TLS certificates and domain configuration MUST be monitored for expiry/misconfiguration.",
+      "implementation_evidence": [
+        "docker-compose.prod.yml",
+        "scripts/deploy-production.sh",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "CI-DEPLOY-DEV-010"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-001",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "A machine-readable requirements traceability matrix MUST map every MUST requirement ID to one or more automated/manual test IDs and latest result.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-001"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-002",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Backend tests MUST run against PostgreSQL for integration-critical behaviour including tenant isolation, RBAC, finance, audit and workflow state machines.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-002"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-003",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Browser E2E MUST use Playwright or equivalent to test core user journeys against the running stack.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-003"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-004",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Security QA MUST include cross-tenant IDOR, privilege escalation, CSRF/CORS, open redirect, upload abuse, rate limiting, secrets and dependency/container scanning.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-004"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-005",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Financial QA MUST include duplicate webhooks, concurrency, amount mismatch, idempotency and receipt-number race tests.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-005"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-006",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Report QA MUST reconcile totals to source data and validate generated PDF structure/layout under empty, normal and extreme datasets.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-006"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-007",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Accessibility QA MUST include automated axe-style checks plus manual keyboard/focus/reduced-motion review of primary workflows.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-007"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-008",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Backup QA MUST perform an actual restore and verify representative data/file integrity.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-008"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-009",
+      "level": "SHOULD",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Every confirmed defect SHOULD first receive a regression test that fails before the fix and passes after the fix where practical.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-009"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-010",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Source-string/static release assertions MAY supplement but MUST NOT replace runtime integration/E2E testing.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-010"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "QA-011",
+      "level": "MUST",
+      "section_number": 31,
+      "section": "QA Automation, Test Strategy and Requirements Traceability",
+      "short_requirement": "Test failures MUST produce actionable logs and screenshots/traces for browser failures.",
+      "implementation_evidence": [
+        "qa",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "QA-META-QA-011"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "UAT-001",
+      "level": "MUST",
+      "section_number": 32,
+      "section": "Staging, UAT and Production Acceptance",
+      "short_requirement": "A release MUST NOT enter production until local/CI release gates are green and a production-like staging deployment succeeds.",
+      "implementation_evidence": [
+        "scripts/staging-e2e.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "UAT-SCRIPT-UAT-001"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "UAT-002",
+      "level": "MUST",
+      "section_number": 32,
+      "section": "Staging, UAT and Production Acceptance",
+      "short_requirement": "Staging MUST validate SMTP/email, S3- compatible storage, Redis/Celery/Beat, ClamAV, Stripe sandbox and enabled PayMongo/Xendit test callbacks.",
+      "implementation_evidence": [
+        "scripts/staging-e2e.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "UAT-SCRIPT-UAT-002"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "UAT-003",
+      "level": "MUST",
+      "section_number": 32,
+      "section": "Staging, UAT and Production Acceptance",
+      "short_requirement": "UAT MUST exercise at least one full workflow for authentication/MFA, member lifecycle, candidate progression, meeting/minutes, dues/payment/receipt, documents, communications, reports and platform admin.",
+      "implementation_evidence": [
+        "scripts/staging-e2e.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "UAT-SCRIPT-UAT-003"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "UAT-004",
+      "level": "MUST",
+      "section_number": 32,
+      "section": "Staging, UAT and Production Acceptance",
+      "short_requirement": "Production release MUST have zero open P0/Critical and P1/High defects; any accepted lower-severity defect requires documented owner/target release.",
+      "implementation_evidence": [
+        "scripts/staging-e2e.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "UAT-SCRIPT-UAT-004"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "UAT-005",
+      "level": "MUST",
+      "section_number": 32,
+      "section": "Staging, UAT and Production Acceptance",
+      "short_requirement": "A production smoke test MUST run immediately after deployment and verify login, tenant load, key API health, background queue, one safe CRUD workflow and public website.",
+      "implementation_evidence": [
+        "scripts/staging-e2e.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "UAT-SCRIPT-UAT-005"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "UAT-006",
+      "level": "MUST",
+      "section_number": 32,
+      "section": "Staging, UAT and Production Acceptance",
+      "short_requirement": "Rollback/restore instructions and latest verified backup MUST be available before production change begins.",
+      "implementation_evidence": [
+        "scripts/staging-e2e.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "UAT-SCRIPT-UAT-006"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "UAT-007",
+      "level": "MUST",
+      "section_number": 32,
+      "section": "Staging, UAT and Production Acceptance",
+      "short_requirement": "Final report/document visual samples MUST be approved during UAT because generated documents are a contractual product output, not an implementation detail.",
+      "implementation_evidence": [
+        "scripts/staging-e2e.sh",
+        "docs/PRODUCTION_DEPLOYMENT.md",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "UAT-SCRIPT-UAT-007"
+      ],
+      "latest_result": "PENDING_EXTERNAL_RUNTIME",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-001",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include complete source code for frontend/backend/workers and all committed database migrations.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-001"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-002",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include Dockerfiles/Compose, environment examples, CI workflows and deployment scripts/instructions.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-002"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-003",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include API/OpenAPI documentation, database/data-model documentation and administrator/operator documentation.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-003"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-004",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include automated QA suites and the final traceability/QA report.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-004"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-005",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include backup/restore and disaster-recovery runbooks plus latest verified restore evidence.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-005"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-006",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include security/dependency scan summaries, SBOM/dependency licence inventory and known-risk register.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-006"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-007",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include representative approved PDFs: receipt, member statement, officer roster, minutes, summons, attendance sheet, meeting pack and onthly management report pack.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-007"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-008",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Delivery MUST include release notes/changelog and documented configuration needed for SMTP/storage/payment providers without embedding live secrets.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-008"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    },
+    {
+      "id": "DEL-009",
+      "level": "MUST",
+      "section_number": 33,
+      "section": "Final Delivery Package and Release Sign-Off",
+      "short_requirement": "Final acceptance MUST be recorded against the sign-off checklist in this specification or an equivalent signed delivery record.",
+      "implementation_evidence": [
+        "README.md",
+        "docs",
+        ".github/workflows/ci.yml"
+      ],
+      "acceptance_test_ids": [
+        "DEL-CHECKLIST-DEL-009"
+      ],
+      "latest_result": "PARTIAL_LOCAL_EVIDENCE",
+      "production_acceptance": false
+    }
+  ]
+}

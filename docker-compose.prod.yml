@@ -1,0 +1,105 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-lodgeflow}
+      POSTGRES_USER: ${POSTGRES_USER:-lodgeflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    healthcheck: {test: ["CMD-SHELL","pg_isready -U ${POSTGRES_USER:-lodgeflow} -d ${POSTGRES_DB:-lodgeflow}"], interval: 10s, timeout: 5s, retries: 10}
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    command: ["redis-server","--appendonly","yes","--requirepass","${REDIS_PASSWORD}"]
+    volumes: [redis_data:/data]
+    healthcheck: {test: ["CMD-SHELL","redis-cli -a ${REDIS_PASSWORD} ping | grep PONG"], interval: 10s, timeout: 4s, retries: 10}
+  clamav:
+    image: clamav/clamav:1.4
+    restart: unless-stopped
+    volumes: [clamav_data:/var/lib/clamav]
+    healthcheck: {test: ["CMD-SHELL","clamdscan --ping 1"], interval: 30s, timeout: 10s, retries: 20, start_period: 90s}
+  migrate:
+    build: ./backend
+    restart: "no"
+    env_file: .env.production
+    depends_on:
+      db: {condition: service_healthy}
+    command: ["python","manage.py","migrate","--noinput"]
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD}@redis:6379/1
+      CLAMAV_HOST: clamav
+      CLAMAV_PORT: 3310
+      CLAMAV_REQUIRED: 'true'
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+      clamav: {condition: service_healthy}
+    volumes: [media_data:/app/media]
+    expose: ['8000']
+    healthcheck: {test: ["CMD","curl","-fsS","http://localhost:8000/api/ready/"], interval: 20s, timeout: 8s, retries: 10}
+  worker:
+    build: ./backend
+    restart: unless-stopped
+    command: ["celery","-A","lodgeflow","worker","-l","INFO","--concurrency=2"]
+    env_file: .env.production
+    environment:
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD}@redis:6379/1
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    volumes: [media_data:/app/media]
+  beat:
+    build: ./backend
+    restart: unless-stopped
+    command: ["celery","-A","lodgeflow","beat","-l","INFO","--pidfile="]
+    env_file: .env.production
+    environment:
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD}@redis:6379/1
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    environment:
+      API_INTERNAL_URL: http://backend:8000/api
+      NEXT_PUBLIC_API_ORIGIN: /api
+    depends_on:
+      backend: {condition: service_healthy}
+    expose: ['3000']
+  proxy:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on:
+      backend: {condition: service_healthy}
+      frontend: {condition: service_started}
+    ports: ["127.0.0.1:${APP_HTTP_PORT:-8080}:8080"]
+    volumes:
+      - ./deploy/nginx-main.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/lodgeflow.conf:ro
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /var/log/nginx
+    healthcheck:
+      test: ["CMD-SHELL","wget -q -O - http://127.0.0.1:8080/healthz | grep -q ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+volumes:
+  postgres_data: {}
+  redis_data: {}
+  media_data: {}
+  clamav_data: {}

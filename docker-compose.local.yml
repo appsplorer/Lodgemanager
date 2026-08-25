@@ -1,0 +1,165 @@
+name: lodgeflow-local
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    env_file: .env.local
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-lodgeflow}
+      POSTGRES_USER: ${POSTGRES_USER:-lodgeflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lodgeflow-local-only}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_local:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lodgeflow} -d ${POSTGRES_DB:-lodgeflow}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    env_file: .env.local
+    command: ["sh", "-c", "redis-server --appendonly yes --requirepass '$${REDIS_PASSWORD}'"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis_local:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a '$${REDIS_PASSWORD}' ping | grep PONG"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+
+  clamav:
+    image: clamav/clamav:1.4
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3310:3310"
+    volumes:
+      - clamav_local:/var/lib/clamav
+
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8025:8025"
+      - "127.0.0.1:1025:1025"
+
+  migrate:
+    build:
+      context: ./backend
+    env_file: .env.local
+    environment:
+      POSTGRES_HOST: db
+      REDIS_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: ["python", "manage.py", "migrate", "--noinput"]
+    restart: "no"
+
+  seed:
+    build:
+      context: ./backend
+    env_file: .env.local
+    environment:
+      POSTGRES_HOST: db
+      REDIS_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    command: ["python", "manage.py", "seed_local_demo"]
+    restart: "no"
+
+  backend:
+    build:
+      context: ./backend
+    env_file: .env.local
+    environment:
+      POSTGRES_HOST: db
+      REDIS_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/1
+      CLAMAV_HOST: clamav
+      CLAMAV_PORT: 3310
+      CLAMAV_REQUIRED: "false"
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./backend:/app
+      - media_local:/app/media
+
+  worker:
+    build:
+      context: ./backend
+    env_file: .env.local
+    environment:
+      POSTGRES_HOST: db
+      REDIS_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/1
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    command: ["celery", "-A", "lodgeflow", "worker", "-l", "INFO", "--concurrency=2"]
+    volumes:
+      - ./backend:/app
+      - media_local:/app/media
+
+  beat:
+    build:
+      context: ./backend
+    env_file: .env.local
+    environment:
+      POSTGRES_HOST: db
+      REDIS_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD:-lodgeflow-redis-local-only}@redis:6379/1
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    command: ["celery", "-A", "lodgeflow", "beat", "-l", "INFO", "--pidfile="]
+    volumes:
+      - ./backend:/app
+      - media_local:/app/media
+
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    environment:
+      API_INTERNAL_URL: http://backend:8000/api
+      NEXT_PUBLIC_API_ORIGIN: /api
+      NEXT_TELEMETRY_DISABLED: "1"
+    depends_on:
+      backend:
+        condition: service_started
+    command: ["sh", "-c", "npm ci && npm run dev -- --hostname 0.0.0.0"]
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+      - frontend_next_cache:/app/.next
+
+volumes:
+  postgres_local: {}
+  redis_local: {}
+  clamav_local: {}
+  media_local: {}
+  frontend_node_modules: {}
+  frontend_next_cache: {}

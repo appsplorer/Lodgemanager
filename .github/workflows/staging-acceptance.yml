@@ -1,0 +1,58 @@
+name: Staging provider acceptance
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  COMPOSE_FILES: docker-compose.prod.yml:docker-compose.staging.yml
+
+jobs:
+  staging-acceptance:
+    runs-on: ubuntu-latest
+    environment: staging
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - name: Materialize protected staging environment
+        shell: bash
+        env:
+          STAGING_ENV_FILE: ${{ secrets.STAGING_ENV_FILE }}
+        run: |
+          test -n "$STAGING_ENV_FILE"
+          printf '%s\n' "$STAGING_ENV_FILE" > .env.staging
+          chmod 600 .env.staging
+      - name: Validate protected configuration
+        run: |
+          docker compose --env-file .env.staging -f docker-compose.prod.yml -f docker-compose.staging.yml config --quiet
+          grep -Eq '^DEBUG=false$' .env.staging
+          ! grep -Eq 'replace-with|yourdomain\.com' .env.staging
+      - name: Execute staging integration contract
+        env:
+          ENV_FILE: .env.staging
+        run: ./scripts/staging-e2e.sh
+      - name: Capture acceptance evidence
+        if: always()
+        run: |
+          mkdir -p staging-artifacts
+          docker compose --env-file .env.staging -f docker-compose.prod.yml -f docker-compose.staging.yml ps > staging-artifacts/docker-ps.txt || true
+          docker compose --env-file .env.staging -f docker-compose.prod.yml -f docker-compose.staging.yml logs --no-color > staging-artifacts/docker.log || true
+          PORT=$(python - <<'PYPORT'
+          p='8080'
+          for line in open('.env.staging'):
+              if line.startswith('APP_HTTP_PORT='): p=line.split('=',1)[1].strip() or p
+          print(p)
+          PYPORT
+          )
+          curl -fsS "http://127.0.0.1:${PORT}/api/ready/" > staging-artifacts/readiness.json || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: staging-provider-evidence
+          path: staging-artifacts
+          if-no-files-found: warn
+      - name: Remove staging secret file
+        if: always()
+        run: rm -f .env.staging

@@ -1,0 +1,682 @@
+{
+  "generated_at": "2026-08-25T14:49:47.188803+00:00",
+  "schema_version": 1,
+  "summary": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 67,
+    "total": 67
+  },
+  "tests": [
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_accessible_reduced_motion_present",
+      "kind": "source-runtime",
+      "name": "test_accessible_reduced_motion_present",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_all_url_view_references_exist",
+      "kind": "source-runtime",
+      "name": "test_all_url_view_references_exist",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_audit_compliance_completion_is_append_only_redacted_dual_control_and_uses_premium_dialogs",
+      "kind": "source-runtime",
+      "name": "test_audit_compliance_completion_is_append_only_redacted_dual_control_and_uses_premium_dialogs",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_backup_restore_is_encrypted_checksum_verified_and_destructive_drilled",
+      "kind": "source-runtime",
+      "name": "test_backup_restore_is_encrypted_checksum_verified_and_destructive_drilled",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_browser_runtime_contract_uses_playwright_and_axe_desktop_mobile",
+      "kind": "source-runtime",
+      "name": "test_browser_runtime_contract_uses_playwright_and_axe_desktop_mobile",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_cache_is_bounded_and_ttl_based",
+      "kind": "source-runtime",
+      "name": "test_cache_is_bounded_and_ttl_based",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_campaign_retries_only_transient_recipient_failures_with_bounded_backoff",
+      "kind": "source-runtime",
+      "name": "test_campaign_retries_only_transient_recipient_failures_with_bounded_backoff",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_candidate_conversion_funnel_fixture",
+      "kind": "source-runtime",
+      "name": "test_candidate_conversion_funnel_fixture",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_candidate_pipeline_reports_conversion_funnel",
+      "kind": "source-runtime",
+      "name": "test_candidate_pipeline_reports_conversion_funnel",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_ci_contains_contractual_runtime_release_gates",
+      "kind": "source-runtime",
+      "name": "test_ci_contains_contractual_runtime_release_gates",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_ci_does_not_use_deprecated_node20_checkout_action_or_corrupted_sync_workflow",
+      "kind": "source-runtime",
+      "name": "test_ci_does_not_use_deprecated_node20_checkout_action_or_corrupted_sync_workflow",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_ci_generates_resolved_container_sboms_and_uploads_security_evidence",
+      "kind": "source-runtime",
+      "name": "test_ci_generates_resolved_container_sboms_and_uploads_security_evidence",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_communications_module_has_consent_preview_lifecycle_idempotent_delivery_and_test_send",
+      "kind": "source-runtime",
+      "name": "test_communications_module_has_consent_preview_lifecycle_idempotent_delivery_and_test_send",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_custom_roles_are_reusable_tenant_scoped_and_dynamic",
+      "kind": "source-runtime",
+      "name": "test_custom_roles_are_reusable_tenant_scoped_and_dynamic",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_dashboard_uses_live_api_not_hardcoded_kpis",
+      "kind": "source-runtime",
+      "name": "test_dashboard_uses_live_api_not_hardcoded_kpis",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_delivery_includes_eight_readable_representative_pdf_samples_and_manifest",
+      "kind": "source-runtime",
+      "name": "test_delivery_includes_eight_readable_representative_pdf_samples_and_manifest",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_delivery_package_contains_api_data_model_admin_security_sbom_and_risk_documents",
+      "kind": "source-runtime",
+      "name": "test_delivery_package_contains_api_data_model_admin_security_sbom_and_risk_documents",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_deployment_scripts_are_present_and_checksum_restore",
+      "kind": "source-runtime",
+      "name": "test_deployment_scripts_are_present_and_checksum_restore",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_document_security_module_enforces_mime_acl_download_and_template_allowlist",
+      "kind": "source-runtime",
+      "name": "test_document_security_module_enforces_mime_acl_download_and_template_allowlist",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_finance_proration_and_status_fixtures_are_deterministic",
+      "kind": "source-runtime",
+      "name": "test_finance_proration_and_status_fixtures_are_deterministic",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_finance_workflow_completion_is_governed_and_currency_safe",
+      "kind": "source-runtime",
+      "name": "test_finance_workflow_completion_is_governed_and_currency_safe",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_generated_report_formats_are_branded_searchable_paginated_and_formula_safe",
+      "kind": "source-runtime",
+      "name": "test_generated_report_formats_are_branded_searchable_paginated_and_formula_safe",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_high_risk_actions_blocked_offline",
+      "kind": "source-runtime",
+      "name": "test_high_risk_actions_blocked_offline",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_hover_microinteractions_present",
+      "kind": "source-runtime",
+      "name": "test_hover_microinteractions_present",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_idempotency_receipts_expire",
+      "kind": "source-runtime",
+      "name": "test_idempotency_receipts_expire",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_integrity_migration_reconciles_legacy_duplicates_before_unique_constraints",
+      "kind": "source-runtime",
+      "name": "test_integrity_migration_reconciles_legacy_duplicates_before_unique_constraints",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_landing_has_reveal_and_parallax",
+      "kind": "source-runtime",
+      "name": "test_landing_has_reveal_and_parallax",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_local_docker_stack_and_windows_helpers_present",
+      "kind": "source-runtime",
+      "name": "test_local_docker_stack_and_windows_helpers_present",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_local_guide_covers_offline_conflict_qa",
+      "kind": "source-runtime",
+      "name": "test_local_guide_covers_offline_conflict_qa",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_local_seed_is_debug_guarded_and_creates_full_access_demo",
+      "kind": "source-runtime",
+      "name": "test_local_seed_is_debug_guarded_and_creates_full_access_demo",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_logout_warns_before_unsynced_discard_with_branded_dialog",
+      "kind": "source-runtime",
+      "name": "test_logout_warns_before_unsynced_discard_with_branded_dialog",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_meeting_pack_combines_notices_and_acl_checked_pdf_attachments",
+      "kind": "source-runtime",
+      "name": "test_meeting_pack_combines_notices_and_acl_checked_pdf_attachments",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_meeting_workflow_completion_is_implemented",
+      "kind": "source-runtime",
+      "name": "test_meeting_workflow_completion_is_implemented",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_member_import_dry_run_executes_model_validation_and_commit_is_atomic",
+      "kind": "source-runtime",
+      "name": "test_member_import_dry_run_executes_model_validation_and_commit_is_atomic",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_mfa_page_and_enrollment_guard_exist",
+      "kind": "source-runtime",
+      "name": "test_mfa_page_and_enrollment_guard_exist",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_migration_graph_covers_all_models_and_has_concrete_choices",
+      "kind": "source-runtime",
+      "name": "test_migration_graph_covers_all_models_and_has_concrete_choices",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_mutations_bootstrap_csrf",
+      "kind": "source-runtime",
+      "name": "test_mutations_bootstrap_csrf",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_next_build_is_standalone_and_compressed",
+      "kind": "source-runtime",
+      "name": "test_next_build_is_standalone_and_compressed",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_next_proxies_api_to_django",
+      "kind": "source-runtime",
+      "name": "test_next_proxies_api_to_django",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_observability_alerting_and_reference_performance_contract",
+      "kind": "source-runtime",
+      "name": "test_observability_alerting_and_reference_performance_contract",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_offline_conflict_version_is_carried_end_to_end",
+      "kind": "source-runtime",
+      "name": "test_offline_conflict_version_is_carried_end_to_end",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_offline_data_is_bound_to_authenticated_principal",
+      "kind": "source-runtime",
+      "name": "test_offline_data_is_bound_to_authenticated_principal",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_offline_queue_never_silently_evicts_changes",
+      "kind": "source-runtime",
+      "name": "test_offline_queue_never_silently_evicts_changes",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_offline_status_ui_present",
+      "kind": "source-runtime",
+      "name": "test_offline_status_ui_present",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_pdf_merge_rejects_encrypted_or_invalid_payloads_and_preserves_page_order",
+      "kind": "source-runtime",
+      "name": "test_pdf_merge_rejects_encrypted_or_invalid_payloads_and_preserves_page_order",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_pdf_service_can_render_representative_documents_without_django_runtime",
+      "kind": "source-runtime",
+      "name": "test_pdf_service_can_render_representative_documents_without_django_runtime",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_playwright_records_warmed_lcp_budget_for_primary_navigation",
+      "kind": "source-runtime",
+      "name": "test_playwright_records_warmed_lcp_budget_for_primary_navigation",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_private_cache_is_encrypted",
+      "kind": "source-runtime",
+      "name": "test_private_cache_is_encrypted",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_production_compose_migrates_before_backend",
+      "kind": "source-runtime",
+      "name": "test_production_compose_migrates_before_backend",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_production_proxy_is_loopback_only_and_datastores_are_private",
+      "kind": "source-runtime",
+      "name": "test_production_proxy_is_loopback_only_and_datastores_are_private",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_production_settings_fail_closed",
+      "kind": "source-runtime",
+      "name": "test_production_settings_fail_closed",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_provider_billing_completion_uses_billing_control_plane_step_up_safe_replay_and_no_native_confirm",
+      "kind": "source-runtime",
+      "name": "test_provider_billing_completion_uses_billing_control_plane_step_up_safe_replay_and_no_native_confirm",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_provider_credential_resolution_prefers_tenant_specific_and_compliance_queue_shows_actor_evidence",
+      "kind": "source-runtime",
+      "name": "test_provider_credential_resolution_prefers_tenant_specific_and_compliance_queue_shows_actor_evidence",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_provider_vault_enable_disable_and_financial_delivery_uniqueness_controls",
+      "kind": "source-runtime",
+      "name": "test_provider_vault_enable_disable_and_financial_delivery_uniqueness_controls",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_public_analytics_are_consent_gated_and_configuration_is_allowlisted",
+      "kind": "source-runtime",
+      "name": "test_public_analytics_are_consent_gated_and_configuration_is_allowlisted",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_public_analytics_config_fixture",
+      "kind": "source-runtime",
+      "name": "test_public_analytics_config_fixture",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_queue_uses_idempotency",
+      "kind": "source-runtime",
+      "name": "test_queue_uses_idempotency",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_report_catalog_async_scheduling_and_premium_accessible_ui_completion",
+      "kind": "source-runtime",
+      "name": "test_report_catalog_async_scheduling_and_premium_accessible_ui_completion",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_server_read_cache_is_scoped_and_invalidated",
+      "kind": "source-runtime",
+      "name": "test_server_read_cache_is_scoped_and_invalidated",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_service_worker_versioning_and_update",
+      "kind": "source-runtime",
+      "name": "test_service_worker_versioning_and_update",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_staging_overlay_proves_email_storage_and_malware_contracts",
+      "kind": "source-runtime",
+      "name": "test_staging_overlay_proves_email_storage_and_malware_contracts",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_step_up_auth_is_wired_for_sensitive_platform_actions",
+      "kind": "source-runtime",
+      "name": "test_step_up_auth_is_wired_for_sensitive_platform_actions",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_sw_never_caches_private_api",
+      "kind": "source-runtime",
+      "name": "test_sw_never_caches_private_api",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_tenant_config_domain_fixtures",
+      "kind": "source-runtime",
+      "name": "test_tenant_config_domain_fixtures",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_tenant_custom_fields_and_candidate_stage_history_are_validated",
+      "kind": "source-runtime",
+      "name": "test_tenant_custom_fields_and_candidate_stage_history_are_validated",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_uploads_are_online_only",
+      "kind": "source-runtime",
+      "name": "test_uploads_are_online_only",
+      "requirements": [],
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "evidence": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "file": "/workspace/scratch/ff6be0b05c32/work/LodgeFlow_FULL_SOURCE_afefebe/qa/test_offline_release.py",
+      "id": "test_workspace_identity_uses_server_bootstrap",
+      "kind": "source-runtime",
+      "name": "test_workspace_identity_uses_server_bootstrap",
+      "requirements": [],
+      "status": "PASS"
+    }
+  ]
+}

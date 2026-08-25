@@ -1,0 +1,629 @@
+{
+  "generated_at": "2026-08-25T14:49:58.760214+00:00",
+  "schema_version": 2,
+  "tests": [
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test)",
+      "exit_criteria": "All three product layers persist real data; cross-tenant negative cases and core journeys pass.",
+      "id": "EXT-GEN-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Docker, PostgreSQL, Redis, S3, SMTP, ClamAV and browser runtime",
+      "requirements": [
+        "GEN-001",
+        "GEN-002",
+        "GEN-003",
+        "GEN-004",
+        "GEN-005",
+        "GEN-006",
+        "GEN-007",
+        "GEN-008",
+        "GEN-009",
+        "GEN-010"
+      ],
+      "title": "Deployed product smoke and tenant isolation"
+    },
+    {
+      "command": "docker compose --env-file .env.staging -f docker-compose.prod.yml -f docker-compose.staging.yml config && ./scripts/staging-e2e.sh",
+      "exit_criteria": "Only intended ingress is exposed; migration/readiness ordering and all stateful dependencies pass.",
+      "id": "EXT-ARC-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Docker Compose v2 and staging secrets",
+      "requirements": [
+        "ARC-001",
+        "ARC-002",
+        "ARC-003",
+        "ARC-004",
+        "ARC-005",
+        "ARC-006",
+        "ARC-007",
+        "ARC-008",
+        "ARC-009",
+        "ARC-010"
+      ],
+      "title": "Production architecture and service topology"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/role-matrix.spec.ts)",
+      "exit_criteria": "Invitation/reset expiry and replay, MFA enrolment, timeouts, suspension and tenant switching pass.",
+      "id": "EXT-IAM-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "PostgreSQL, Redis and real browser",
+      "requirements": [
+        "IAM-001",
+        "IAM-002",
+        "IAM-003",
+        "IAM-004",
+        "IAM-005",
+        "IAM-006",
+        "IAM-007",
+        "IAM-008",
+        "IAM-009",
+        "IAM-010"
+      ],
+      "title": "Identity, MFA and session security"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/role-matrix.spec.ts)",
+      "exit_criteria": "Every allowed and denied API/UI action matches the approved role matrix; dual control passes.",
+      "id": "EXT-RBAC-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Seeded staging role accounts and browser runtime",
+      "requirements": [
+        "RBAC-001",
+        "RBAC-002",
+        "RBAC-003",
+        "RBAC-004",
+        "RBAC-005",
+        "RBAC-006",
+        "RBAC-007",
+        "RBAC-008"
+      ],
+      "title": "Tenant and platform role matrix"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Publishing, revisions, redirects, SEO, forms, consent and responsive public journeys pass.",
+      "id": "EXT-CMS-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Staging public hostname, SMTP and browser runtime",
+      "requirements": [
+        "CMS-001",
+        "CMS-002",
+        "CMS-003",
+        "CMS-004",
+        "CMS-005",
+        "CMS-006",
+        "CMS-007",
+        "CMS-008",
+        "CMS-009",
+        "CMS-010",
+        "CMS-011",
+        "CMS-012",
+        "CMS-013"
+      ],
+      "title": "Public website, CMS, SEO and lead capture"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/role-matrix.spec.ts)",
+      "exit_criteria": "Tenant, user, feature, credential, billing, logs and impersonation actions obey platform permissions.",
+      "id": "EXT-PAD-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Platform role accounts with MFA",
+      "requirements": [
+        "PAD-001",
+        "PAD-002",
+        "PAD-003",
+        "PAD-004",
+        "PAD-005",
+        "PAD-006",
+        "PAD-007",
+        "PAD-008",
+        "PAD-009",
+        "PAD-010"
+      ],
+      "title": "Platform operator console"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Branding, locale, timezone, finance, security, custom fields/stages and user settings persist and validate.",
+      "id": "EXT-TAD-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Owner/admin staging accounts",
+      "requirements": [
+        "TAD-001",
+        "TAD-002",
+        "TAD-003",
+        "TAD-004",
+        "TAD-005",
+        "TAD-006",
+        "TAD-007",
+        "TAD-008",
+        "TAD-009"
+      ],
+      "title": "Tenant administration and configuration"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "KPIs reconcile to persisted data and search/navigation remain tenant- and permission-scoped.",
+      "id": "EXT-DASH-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Representative staging dataset and browser runtime",
+      "requirements": [
+        "DASH-001",
+        "DASH-002",
+        "DASH-003",
+        "DASH-004",
+        "DASH-005",
+        "DASH-006",
+        "DASH-007"
+      ],
+      "title": "Dashboard, navigation and global search"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "CRUD, duplicate override, archive/anonymize, activity, custom fields and statements pass.",
+      "id": "EXT-MEM-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Representative member fixtures",
+      "requirements": [
+        "MEM-001",
+        "MEM-002",
+        "MEM-003",
+        "MEM-004",
+        "MEM-005",
+        "MEM-006",
+        "MEM-007",
+        "MEM-008",
+        "MEM-009",
+        "MEM-010"
+      ],
+      "title": "Member CRM and lifecycle"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Role definitions, overlapping terms, succession, history and roster output pass.",
+      "id": "EXT-OFF-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Representative officer fixtures",
+      "requirements": [
+        "OFF-001",
+        "OFF-002",
+        "OFF-003",
+        "OFF-004",
+        "OFF-005"
+      ],
+      "title": "Officer terms and governance"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Pipeline, scoped mentor access, tasks, stage history, milestones and progress output pass.",
+      "id": "EXT-CAN-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Candidate/mentor role fixtures",
+      "requirements": [
+        "CAN-001",
+        "CAN-002",
+        "CAN-003",
+        "CAN-004",
+        "CAN-005",
+        "CAN-006",
+        "CAN-007",
+        "CAN-008"
+      ],
+      "title": "Candidate, mentor and milestone workflows"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Recurrence, agenda, attendance, visitors, minutes locks/reopen and generated packs pass.",
+      "id": "EXT-MTG-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Meeting fixtures, PostgreSQL and browser runtime",
+      "requirements": [
+        "MTG-001",
+        "MTG-002",
+        "MTG-003",
+        "MTG-004",
+        "MTG-005",
+        "MTG-006",
+        "MTG-007",
+        "MTG-008",
+        "MTG-009"
+      ],
+      "title": "Meeting governance workflows"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh",
+      "exit_criteria": "Proration, assessment idempotency, unique receipts, allocation, reversal, approvals and exports reconcile.",
+      "id": "EXT-FIN-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "PostgreSQL concurrency plus representative finance fixtures",
+      "requirements": [
+        "FIN-001",
+        "FIN-002",
+        "FIN-003",
+        "FIN-004",
+        "FIN-005",
+        "FIN-006",
+        "FIN-007",
+        "FIN-008",
+        "FIN-009",
+        "FIN-010",
+        "FIN-011",
+        "FIN-012"
+      ],
+      "title": "Finance, dues, payments and receipts"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh",
+      "exit_criteria": "MIME/signature/size/scan controls, ACL downloads, templates, previews and generated files pass.",
+      "id": "EXT-DOC-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Private S3-compatible storage and required ClamAV",
+      "requirements": [
+        "DOC-001",
+        "DOC-002",
+        "DOC-003",
+        "DOC-004",
+        "DOC-005",
+        "DOC-006",
+        "DOC-007",
+        "DOC-008"
+      ],
+      "title": "Documents, templates and secure media"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh",
+      "exit_criteria": "Consent, segmentation, preview, scheduling, idempotent delivery, retry and delivery logs pass.",
+      "id": "EXT-COM-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "SMTP sandbox/Mailpit and Celery worker",
+      "requirements": [
+        "COM-001",
+        "COM-002",
+        "COM-003",
+        "COM-004",
+        "COM-005",
+        "COM-006",
+        "COM-007",
+        "COM-008"
+      ],
+      "title": "Communications and delivery"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Every Appendix C report reconciles, filters, exports, saves, schedules and enforces permissions.",
+      "id": "EXT-REP-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "PostgreSQL, Celery/Beat, SMTP and browser runtime",
+      "requirements": [
+        "REP-001",
+        "REP-002",
+        "REP-003",
+        "REP-004",
+        "REP-005",
+        "REP-006",
+        "REP-007",
+        "REP-008",
+        "REP-009",
+        "REP-010",
+        "REP-011",
+        "REP-012"
+      ],
+      "title": "Report catalogue, analytics and scheduling"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && python scripts/generate-pdf-samples.py",
+      "exit_criteria": "PDF/XLSX/CSV are searchable, formula-safe, branded, paginated, private and visually approved.",
+      "id": "EXT-RPTFMT-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "LibreOffice/PDF renderer, SMTP and representative data",
+      "requirements": [
+        "RPTFMT-001",
+        "RPTFMT-002",
+        "RPTFMT-003",
+        "RPTFMT-004",
+        "RPTFMT-005",
+        "RPTFMT-006",
+        "RPTFMT-007",
+        "RPTFMT-008",
+        "RPTFMT-009",
+        "RPTFMT-010"
+      ],
+      "title": "Professional report format acceptance"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh",
+      "exit_criteria": "Append-only chain, redaction, filters, dual control, impersonation and evidence hashes pass.",
+      "id": "EXT-AUD-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "PostgreSQL and separate requester/approver/operator accounts",
+      "requirements": [
+        "AUD-001",
+        "AUD-002",
+        "AUD-003",
+        "AUD-004",
+        "AUD-005",
+        "AUD-006",
+        "AUD-007",
+        "AUD-008"
+      ],
+      "title": "Audit, compliance and sensitive export controls"
+    },
+    {
+      "command": "gh workflow run staging-acceptance.yml",
+      "exit_criteria": "Staging passes and recorded provider-originated callbacks prove signature, tenant/mode/amount/currency binding, duplicate replay, quarantine and subscription flows.",
+      "id": "EXT-PAY-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Real Stripe, PayMongo and Xendit sandbox credentials for enabled providers",
+      "requirements": [
+        "PAY-001",
+        "PAY-002",
+        "PAY-003",
+        "PAY-004",
+        "PAY-005",
+        "PAY-006",
+        "PAY-007",
+        "PAY-008",
+        "PAY-009",
+        "PAY-010",
+        "PAY-011"
+      ],
+      "title": "Payment-provider sandbox reconciliation"
+    },
+    {
+      "command": "(cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Install/update, safe read cache, queued safe mutations, conflicts and blocked high-risk actions pass.",
+      "id": "EXT-PWA-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Chromium browser with online/offline control",
+      "requirements": [
+        "PWA-001",
+        "PWA-002",
+        "PWA-003",
+        "PWA-004",
+        "PWA-005",
+        "PWA-006",
+        "PWA-007",
+        "PWA-008"
+      ],
+      "title": "Offline/PWA continuity and conflicts"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && (cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Preview/commit atomicity, duplicate/error reporting, bounded bulk actions, search and saved views pass.",
+      "id": "EXT-DATA-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Large representative import files and PostgreSQL",
+      "requirements": [
+        "DATA-001",
+        "DATA-002",
+        "DATA-003",
+        "DATA-004",
+        "DATA-005",
+        "DATA-006",
+        "DATA-007"
+      ],
+      "title": "Imports, bulk operations and saved views"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh",
+      "exit_criteria": "Async imports/reports/campaigns expose progress, retry safely, deduplicate and recover from transient failure.",
+      "id": "EXT-JOB-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Redis, Celery worker and Beat running",
+      "requirements": [
+        "JOB-001",
+        "JOB-002",
+        "JOB-003",
+        "JOB-004",
+        "JOB-005",
+        "JOB-006"
+      ],
+      "title": "Background jobs and schedules"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && python scripts/generate-openapi.py && python -m unittest qa.test_openapi_contract",
+      "exit_criteria": "Runtime routes match OpenAPI; pagination/errors/idempotency and signed webhook replay pass.",
+      "id": "EXT-API-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Staging services and provider sandboxes",
+      "requirements": [
+        "API-001",
+        "API-002",
+        "API-003",
+        "API-004",
+        "API-005",
+        "API-006",
+        "API-007",
+        "API-008",
+        "API-009"
+      ],
+      "title": "API and webhook contract acceptance"
+    },
+    {
+      "command": "pip-audit -r backend/requirements.txt && (cd frontend && npm audit --audit-level=high) && trivy image --severity HIGH,CRITICAL --ignore-unfixed lodgeflow-backend:release && trivy image --severity HIGH,CRITICAL --ignore-unfixed lodgeflow-frontend:release",
+      "exit_criteria": "Tenant/RBAC negatives, CSRF/CSP/headers, rate limits, upload attacks and scans have no open High/Critical defects.",
+      "id": "EXT-SEC-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Production-like TLS proxy plus dependency/container and DAST scanners",
+      "requirements": [
+        "SEC-001",
+        "SEC-002",
+        "SEC-003",
+        "SEC-004",
+        "SEC-005",
+        "SEC-006",
+        "SEC-007",
+        "SEC-008",
+        "SEC-009",
+        "SEC-010"
+      ],
+      "title": "Application security acceptance"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh",
+      "exit_criteria": "Export/anonymize/retention jobs preserve protected records, produce audit evidence and respect legal holds.",
+      "id": "EXT-PRIV-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "PostgreSQL copy with aged test records and separate approver roles",
+      "requirements": [
+        "PRIV-001",
+        "PRIV-002",
+        "PRIV-003",
+        "PRIV-004",
+        "PRIV-005",
+        "PRIV-006",
+        "PRIV-007"
+      ],
+      "title": "Privacy, retention and integrity"
+    },
+    {
+      "command": "(cd frontend && npx playwright test e2e/core.spec.ts)",
+      "exit_criteria": "Keyboard, focus, contrast, reduced motion, zoom, empty/error/loading states and breakpoints pass.",
+      "id": "EXT-UX-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Desktop/tablet/mobile browsers and axe",
+      "requirements": [
+        "UX-001",
+        "UX-002",
+        "UX-003",
+        "UX-004",
+        "UX-005",
+        "UX-006",
+        "UX-007",
+        "UX-008",
+        "UX-009",
+        "UX-010"
+      ],
+      "title": "Responsive accessibility and design acceptance"
+    },
+    {
+      "command": "LOAD_BASE_URL=https://staging.example.test LOAD_TEST_USERNAME=... LOAD_TEST_PASSWORD=... LOAD_LODGE_ID=... python scripts/load-test.py",
+      "exit_criteria": "Documented p95/error/LCP/throughput targets pass without tenant leakage or job starvation.",
+      "id": "EXT-PERF-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Production-sized staging dataset and monitoring",
+      "requirements": [
+        "PERF-001",
+        "PERF-002",
+        "PERF-003",
+        "PERF-004",
+        "PERF-005",
+        "PERF-006",
+        "PERF-007"
+      ],
+      "title": "Reference load and availability targets"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh && PUBLIC_BASE_URL=https://staging.example.test ALERT_WEBHOOK_URL=... python scripts/ops-monitor.py",
+      "exit_criteria": "Structured redacted logs, request IDs, health/readiness, backup age, disk/TLS and alert delivery pass.",
+      "id": "EXT-OBS-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Log/metric sink and alert receiver",
+      "requirements": [
+        "OBS-001",
+        "OBS-002",
+        "OBS-003",
+        "OBS-004",
+        "OBS-005",
+        "OBS-006"
+      ],
+      "title": "Observability and operational monitoring"
+    },
+    {
+      "command": "./scripts/verify-backup-restore.sh",
+      "exit_criteria": "A fresh encrypted backup restores database and private storage; checksums, sentinel, RPO/RTO and readiness pass.",
+      "id": "EXT-DR-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Isolated Docker recovery host and off-site backup destination",
+      "requirements": [
+        "DR-001",
+        "DR-002",
+        "DR-003",
+        "DR-004",
+        "DR-005",
+        "DR-006",
+        "DR-007",
+        "DR-008"
+      ],
+      "title": "Encrypted backup and disaster recovery"
+    },
+    {
+      "command": "./scripts/deploy-production.sh",
+      "exit_criteria": "Lock-resolved builds, migrations, non-root health, secret injection, rollout and rollback rehearsal pass.",
+      "id": "EXT-DEV-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Clean staging host, immutable image registry and rollback image",
+      "requirements": [
+        "DEV-001",
+        "DEV-002",
+        "DEV-003",
+        "DEV-004",
+        "DEV-005",
+        "DEV-006",
+        "DEV-007",
+        "DEV-008",
+        "DEV-009",
+        "DEV-010"
+      ],
+      "title": "Build, deployment and rollback"
+    },
+    {
+      "command": "./scripts/release-check.sh && (cd frontend && npx playwright test)",
+      "exit_criteria": "Unit/integration/E2E/security/accessibility suites pass and exact artifact evidence maps every MUST/SHOULD.",
+      "id": "EXT-QA-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "All service dependencies and browsers",
+      "requirements": [
+        "QA-001",
+        "QA-002",
+        "QA-003",
+        "QA-004",
+        "QA-005",
+        "QA-006",
+        "QA-007",
+        "QA-008",
+        "QA-009",
+        "QA-010",
+        "QA-011"
+      ],
+      "title": "Full automated QA and traceability"
+    },
+    {
+      "command": "./scripts/staging-e2e.sh",
+      "exit_criteria": "All scripted UAT journeys pass; no P0/P1 defects; formal business/security/operations sign-offs recorded.",
+      "id": "EXT-UAT-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Named business, security and operations approvers",
+      "requirements": [
+        "UAT-001",
+        "UAT-002",
+        "UAT-003",
+        "UAT-004",
+        "UAT-005",
+        "UAT-006",
+        "UAT-007"
+      ],
+      "title": "Staging UAT and production acceptance"
+    },
+    {
+      "command": "./scripts/release-check.sh",
+      "exit_criteria": "Checksum, source, migrations, docs, samples, SBOM, licenses, known risks and signed traceability are archived.",
+      "id": "EXT-DEL-PRODUCTION-ACCEPTANCE",
+      "kind": "uat",
+      "prerequisites": "Exact release ZIP, scan reports and acceptance evidence",
+      "requirements": [
+        "DEL-001",
+        "DEL-002",
+        "DEL-003",
+        "DEL-004",
+        "DEL-005",
+        "DEL-006",
+        "DEL-007",
+        "DEL-008",
+        "DEL-009"
+      ],
+      "title": "Final package and release sign-off"
+    }
+  ]
+}

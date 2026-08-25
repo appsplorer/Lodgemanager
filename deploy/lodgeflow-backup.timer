@@ -1,0 +1,11 @@
+[Unit]
+Description=Run LodgeFlow recovery backup daily
+
+[Timer]
+OnCalendar=*-*-* 02:17:00 UTC
+Persistent=true
+RandomizedDelaySec=900
+Unit=lodgeflow-backup.service
+
+[Install]
+WantedBy=timers.target

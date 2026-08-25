@@ -1,0 +1,76 @@
+name: Reference performance acceptance
+
+on:
+  workflow_dispatch:
+    inputs:
+      duration_seconds:
+        description: Measured load duration
+        required: true
+        default: '120'
+      p95_limit_ms:
+        description: API p95 acceptance threshold
+        required: true
+        default: '700'
+
+permissions:
+  contents: read
+
+jobs:
+  reference-load:
+    # Register a protected runner matching the SRS reference profile (>=8 vCPU, >=12 GB RAM, NVMe).
+    runs-on: [self-hosted, lodgeflow-reference]
+    environment: performance-acceptance
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install requests
+      - name: Start isolated Docker test stack
+        run: |
+          cp .env.local.example .env.local
+          docker compose --env-file .env.local -f docker-compose.local.yml up -d --build
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:8000/api/ready/ >/dev/null && break; sleep 2; done
+          curl -fsS http://127.0.0.1:8000/api/ready/
+      - name: Seed contractual reference dataset
+        env:
+          LOAD_TEST_PASSWORD: ${{ secrets.LOAD_TEST_PASSWORD }}
+        run: |
+          test -n "$LOAD_TEST_PASSWORD"
+          docker compose --env-file .env.local -f docker-compose.local.yml exec -T \
+            -e ALLOW_REFERENCE_LOAD_SEED=true -e LOAD_TEST_PASSWORD="$LOAD_TEST_PASSWORD" backend \
+            python manage.py seed_reference_load --reset --tenants 100 --members 50000 --attendance 250000 --finance 100000 --documents 20000
+          LODGE_ID=$(docker compose --env-file .env.local -f docker-compose.local.yml exec -T backend \
+            python manage.py shell -c "from platform_core.models import Tenant; print(Tenant.objects.get(slug='loadref-001').id)" | tail -1 | tr -d '\r')
+          echo "LOAD_LODGE_ID=$LODGE_ID" >> "$GITHUB_ENV"
+      - name: Run 100-session API load gate
+        env:
+          LOAD_BASE_URL: http://127.0.0.1:8000
+          LOAD_TEST_USERNAME: loadtest@example.test
+          LOAD_TEST_PASSWORD: ${{ secrets.LOAD_TEST_PASSWORD }}
+          LOAD_CONCURRENCY: '100'
+          LOAD_DURATION_SECONDS: ${{ inputs.duration_seconds }}
+          LOAD_P95_LIMIT_MS: ${{ inputs.p95_limit_ms }}
+          LOAD_ERROR_RATE_LIMIT: '0.005'
+          LOAD_RESULT_PATH: artifacts/reference-load.json
+        run: python scripts/load-test.py
+      - name: Capture service evidence
+        if: always()
+        run: |
+          mkdir -p artifacts
+          docker compose --env-file .env.local -f docker-compose.local.yml ps > artifacts/docker-ps.txt || true
+          docker compose --env-file .env.local -f docker-compose.local.yml logs --no-color --tail=3000 > artifacts/docker.log || true
+          uname -a > artifacts/runner.txt
+          (nproc || true) >> artifacts/runner.txt
+          (free -h || true) >> artifacts/runner.txt
+          (df -h || true) >> artifacts/runner.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference-performance-evidence
+          path: artifacts
+          if-no-files-found: error
+      - name: Tear down benchmark stack
+        if: always()
+        run: docker compose --env-file .env.local -f docker-compose.local.yml down -v --remove-orphans || true

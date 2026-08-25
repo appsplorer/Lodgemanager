@@ -1,0 +1,209 @@
+{
+  "generated_at": "2026-08-25T14:49:58.760214+00:00",
+  "schema_version": 2,
+  "summary": {
+    "blocked_external": 33,
+    "fail": 0,
+    "pass": 0
+  },
+  "tests": [
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Docker, PostgreSQL, Redis, S3, SMTP, ClamAV and browser runtime.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#gen-deployed-product-smoke-and-tenant-isolation",
+      "id": "EXT-GEN-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Docker Compose v2 and staging secrets.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#arc-production-architecture-and-service-topology",
+      "id": "EXT-ARC-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: PostgreSQL, Redis and real browser.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#iam-identity-mfa-and-session-security",
+      "id": "EXT-IAM-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Seeded staging role accounts and browser runtime.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#rbac-tenant-and-platform-role-matrix",
+      "id": "EXT-RBAC-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Staging public hostname, SMTP and browser runtime.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#cms-public-website-cms-seo-and-lead-capture",
+      "id": "EXT-CMS-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Platform role accounts with MFA.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#pad-platform-operator-console",
+      "id": "EXT-PAD-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Owner/admin staging accounts.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#tad-tenant-administration-and-configuration",
+      "id": "EXT-TAD-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Representative staging dataset and browser runtime.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#dash-dashboard-navigation-and-global-search",
+      "id": "EXT-DASH-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Representative member fixtures.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#mem-member-crm-and-lifecycle",
+      "id": "EXT-MEM-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Representative officer fixtures.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#off-officer-terms-and-governance",
+      "id": "EXT-OFF-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Candidate/mentor role fixtures.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#can-candidate-mentor-and-milestone-workflows",
+      "id": "EXT-CAN-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Meeting fixtures, PostgreSQL and browser runtime.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#mtg-meeting-governance-workflows",
+      "id": "EXT-MTG-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: PostgreSQL concurrency plus representative finance fixtures.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#fin-finance-dues-payments-and-receipts",
+      "id": "EXT-FIN-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Private S3-compatible storage and required ClamAV.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#doc-documents-templates-and-secure-media",
+      "id": "EXT-DOC-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: SMTP sandbox/Mailpit and Celery worker.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#com-communications-and-delivery",
+      "id": "EXT-COM-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: PostgreSQL, Celery/Beat, SMTP and browser runtime.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#rep-report-catalogue-analytics-and-scheduling",
+      "id": "EXT-REP-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: LibreOffice/PDF renderer, SMTP and representative data.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#rptfmt-professional-report-format-acceptance",
+      "id": "EXT-RPTFMT-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: PostgreSQL and separate requester/approver/operator accounts.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#aud-audit-compliance-and-sensitive-export-controls",
+      "id": "EXT-AUD-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Real Stripe, PayMongo and Xendit sandbox credentials for enabled providers.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#pay-payment-provider-sandbox-reconciliation",
+      "id": "EXT-PAY-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Chromium browser with online/offline control.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#pwa-offline-pwa-continuity-and-conflicts",
+      "id": "EXT-PWA-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Large representative import files and PostgreSQL.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#data-imports-bulk-operations-and-saved-views",
+      "id": "EXT-DATA-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Redis, Celery worker and Beat running.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#job-background-jobs-and-schedules",
+      "id": "EXT-JOB-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Staging services and provider sandboxes.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#api-api-and-webhook-contract-acceptance",
+      "id": "EXT-API-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Production-like TLS proxy plus dependency/container and DAST scanners.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#sec-application-security-acceptance",
+      "id": "EXT-SEC-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: PostgreSQL copy with aged test records and separate approver roles.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#priv-privacy-retention-and-integrity",
+      "id": "EXT-PRIV-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Desktop/tablet/mobile browsers and axe.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#ux-responsive-accessibility-and-design-acceptance",
+      "id": "EXT-UX-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Production-sized staging dataset and monitoring.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#perf-reference-load-and-availability-targets",
+      "id": "EXT-PERF-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Log/metric sink and alert receiver.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#obs-observability-and-operational-monitoring",
+      "id": "EXT-OBS-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Isolated Docker recovery host and off-site backup destination.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#dr-encrypted-backup-and-disaster-recovery",
+      "id": "EXT-DR-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Clean staging host, immutable image registry and rollback image.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#dev-build-deployment-and-rollback",
+      "id": "EXT-DEV-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: All service dependencies and browsers.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#qa-full-automated-qa-and-traceability",
+      "id": "EXT-QA-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Named business, security and operations approvers.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#uat-staging-uat-and-production-acceptance",
+      "id": "EXT-UAT-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "detail": "Not executable in the packaging workspace. Requires: Exact release ZIP, scan reports and acceptance evidence.",
+      "evidence": "docs/EXTERNAL_ACCEPTANCE_CHECKLIST.md#del-final-package-and-release-sign-off",
+      "id": "EXT-DEL-PRODUCTION-ACCEPTANCE",
+      "status": "BLOCKED_EXTERNAL"
+    }
+  ]
+}

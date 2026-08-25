@@ -1,0 +1,15 @@
+'use client';
+import {useEffect,useState} from 'react';
+import {cacheStats,listQueued,purgePrivateOfflineData,removeQueued,requestPersistentStorage,type OfflineMutation} from '@/lib/offline';
+import {useConfirmDialog} from '@/components/AppDialog';
+
+export function OfflineCacheManager(){
+ const[stats,setStats]=useState({entries:0,queued:0}),[usage,setUsage]=useState('—'),[message,setMessage]=useState(''),[conflicts,setConflicts]=useState<OfflineMutation[]>([]);
+ const confirmDialog=useConfirmDialog();
+ async function refresh(){setStats(await cacheStats());setConflicts((await listQueued()).filter(x=>Boolean(x.lastError)));if(navigator.storage?.estimate){const x=await navigator.storage.estimate();setUsage(x.usage?`${(x.usage/1024/1024).toFixed(1)} MB`:'0 MB')}}
+ useEffect(()=>{void refresh();const f=()=>void refresh();window.addEventListener('lodgeflow:offline-state',f);return()=>window.removeEventListener('lodgeflow:offline-state',f)},[]);
+ async function clear(){const ok=await confirmDialog.ask('Clear encrypted offline snapshots and queued routine changes on this device? Unsynced queued changes will be removed.',{title:'Clear device data',danger:true,confirmLabel:'Clear data'});if(!ok)return;await purgePrivateOfflineData();if('serviceWorker'in navigator){const r=await navigator.serviceWorker.ready;r.active?.postMessage({type:'PURGE_SHELL'})}setMessage('Offline device data cleared.');await refresh()}
+ async function discard(x:OfflineMutation){const ok=await confirmDialog.ask(`Discard the queued ${x.method} change for ${x.path}?`,{title:'Discard queued change',danger:true,confirmLabel:'Discard'});if(!ok)return;await removeQueued(x.id);setMessage('Queued change discarded.');await refresh()}
+ async function persist(){const ok=await requestPersistentStorage();setMessage(ok?'Browser storage is protected from routine eviction on this device.':'The browser did not grant persistent storage; LodgeFlow will continue using normal bounded storage.')}
+ return <><section className="panel console-panel cache-manager"><span className="eyebrow">Offline & cache</span><h3>Device continuity</h3><p>Private API snapshots are AES-GCM encrypted in IndexedDB; the service worker caches only the app shell and public content.</p><div className="cache-stats"><div><b>{stats.entries}</b><span>encrypted snapshots</span></div><div><b>{stats.queued}</b><span>queued changes</span></div><div><b>{usage}</b><span>browser storage used</span></div></div><div className="console-actions"><button className="secondary" onClick={()=>void persist()}>Protect offline storage</button><button className="secondary danger" onClick={()=>void clear()}>Clear device cache</button></div>{conflicts.length>0&&<div className="sync-review"><b>{conflicts.length} queued change(s) need review</b>{conflicts.slice(0,5).map(x=><div className="sync-review-row" key={x.id}><small>{x.method} {x.path} · {x.lastError}</small><button className="secondary" onClick={()=>void discard(x)}>Discard</button></div>)}</div>}{message&&<small>{message}</small>}</section>{confirmDialog.dialog}</>;
+}

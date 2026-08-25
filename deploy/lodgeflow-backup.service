@@ -1,0 +1,21 @@
+[Unit]
+Description=LodgeFlow encrypted database and private-storage backup
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=lodgeflow
+Group=docker
+WorkingDirectory=/opt/lodgeflow
+Environment=ENV_FILE=.env.production
+Environment=COMPOSE_FILES=docker-compose.prod.yml
+EnvironmentFile=/etc/lodgeflow/backup.env
+ExecStart=/opt/lodgeflow/scripts/backup.sh /var/lib/lodgeflow-backups
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/lodgeflow-backups
+UMask=0077

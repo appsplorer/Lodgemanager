@@ -1,0 +1,14 @@
+'use client';
+
+import {useEffect,useState} from 'react';
+
+type Field={key:string;label:string;type:string;required:boolean;display_order:number;options?:string[]};
+const types=['text','textarea','email','phone','number','date','select','checkbox'];
+
+export function CustomFieldEditor({initial}:{initial:unknown[]}){
+ const[rows,setRows]=useState<Field[]>([]);
+ useEffect(()=>{setRows((Array.isArray(initial)?initial:[]).filter((item):item is Field=>Boolean(item&&typeof item==='object'&&'key' in item)).map((item,index)=>({...item,display_order:Number(item.display_order??index),required:Boolean(item.required),options:Array.isArray(item.options)?item.options:[]})))},[initial]);
+ function update(index:number,patch:Partial<Field>){setRows(current=>current.map((row,rowIndex)=>rowIndex===index?{...row,...patch}:row))}
+ function add(){setRows(current=>[...current,{key:'',label:'',type:'text',required:false,display_order:current.length,options:[]}])}
+ return <div className="wide custom-field-editor"><input type="hidden" name="custom_fields" value={JSON.stringify(rows.map((row,index)=>({...row,key:row.key.trim().toLowerCase().replace(/[^a-z0-9_]+/g,'_'),label:row.label.trim(),display_order:index,...(row.type==='select'?{options:row.options||[]}:{options:undefined})})))}/><div className="panel-title"><div><span className="eyebrow">Member data design</span><h4>Custom member fields</h4><small>Use the structured editor; administrators never need to write JSON.</small></div><button type="button" className="secondary" onClick={add}>Add field</button></div><div className="field-builder">{rows.map((row,index)=><div key={`${index}-${row.key}`}><input value={row.key} onChange={event=>update(index,{key:event.target.value})} placeholder="field_key" aria-label={`Field ${index+1} key`} required/><input value={row.label} onChange={event=>update(index,{label:event.target.value})} placeholder="Display label" aria-label={`Field ${index+1} label`} required/><select value={row.type} onChange={event=>update(index,{type:event.target.value})} aria-label={`Field ${index+1} type`}>{types.map(type=><option key={type}>{type}</option>)}</select>{row.type==='select'&&<input value={(row.options||[]).join(', ')} onChange={event=>update(index,{options:event.target.value.split(',').map(value=>value.trim()).filter(Boolean)})} placeholder="Options, comma separated" aria-label={`Field ${index+1} options`}/>}<label className="check"><input type="checkbox" checked={row.required} onChange={event=>update(index,{required:event.target.checked})}/><span>Required</span></label><button type="button" className="secondary danger" onClick={()=>setRows(current=>current.filter((_,rowIndex)=>rowIndex!==index))}>Remove</button></div>)}</div>{!rows.length&&<div className="report-empty compact"><strong>No custom fields</strong><span>Add only fields the lodge genuinely needs.</span></div>}</div>
+}

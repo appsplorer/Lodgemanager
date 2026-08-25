@@ -1,0 +1,234 @@
+name: LodgeFlow CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  source-qa:
+    name: Source contract and traceability
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r backend/requirements-qa.txt
+      - run: python -m compileall -q backend scripts
+      - run: python scripts/generate-openapi.py && git diff --exit-code docs/openapi.yaml
+      - run: pytest -q qa
+      - run: bash -n scripts/*.sh
+      - run: |
+          python - <<'PY'
+          import pathlib, yaml
+          for path in [pathlib.Path('docker-compose.local.yml'), pathlib.Path('docker-compose.prod.yml'), pathlib.Path('docker-compose.staging.yml'), *pathlib.Path('.github/workflows').glob('*.yml')]:
+              yaml.safe_load(path.read_text())
+              print('YAML OK:', path)
+          PY
+      - working-directory: frontend
+        run: node scripts/parse-tsx.mjs
+
+  backend:
+    name: Django + PostgreSQL + Redis integration
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7.4-alpine
+        ports: ['6379:6379']
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: lodgeflow
+          POSTGRES_USER: lodgeflow
+          POSTGRES_PASSWORD: lodgeflow-ci-password
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U lodgeflow -d lodgeflow"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DEBUG: 'true'
+      DJANGO_SECRET_KEY: ci-only-development-style-secret-not-used-in-production
+      POSTGRES_DB: lodgeflow
+      POSTGRES_USER: lodgeflow
+      POSTGRES_PASSWORD: lodgeflow-ci-password
+      POSTGRES_HOST: 127.0.0.1
+      POSTGRES_PORT: 5432
+      REDIS_URL: redis://127.0.0.1:6379/0
+      CELERY_BROKER_URL: redis://127.0.0.1:6379/0
+      CELERY_RESULT_BACKEND: redis://127.0.0.1:6379/1
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - run: pip install -r backend/requirements.txt
+      - working-directory: backend
+        run: python manage.py check
+      - working-directory: backend
+        run: python manage.py makemigrations --check --dry-run
+      - name: Exercise clean-to-upgrade migration path
+        working-directory: backend
+        run: |
+          python manage.py migrate platform_core 0001 --noinput
+          python manage.py migrate --noinput
+          python manage.py showmigrations platform_core
+      - working-directory: backend
+        run: python manage.py test platform_core --verbosity 2
+      - name: Production Django deployment checks
+        working-directory: backend
+        env:
+          DEBUG: 'false'
+          DJANGO_SECRET_KEY: ci-production-check-secret-that-is-deliberately-longer-than-sixty-four-characters-123456789
+          CREDENTIAL_ENCRYPTION_KEYS: LhsyKOhpoGg3KSLmaQ-1L2VFGUtutXeRGxT9tPrBR4M=
+          ALLOWED_HOSTS: app.ci.example.test,backend
+          CSRF_TRUSTED_ORIGINS: https://app.ci.example.test
+          CORS_ALLOWED_ORIGINS: https://app.ci.example.test
+          SECURE_SSL_REDIRECT: 'true'
+        run: python manage.py check --deploy --fail-level WARNING
+
+  frontend:
+    name: TypeScript + Next.js production build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - working-directory: frontend
+        run: npm ci
+      - working-directory: frontend
+        run: npm run check:syntax
+      - working-directory: frontend
+        run: npm run typecheck
+      - working-directory: frontend
+        run: npm run build
+      - working-directory: frontend
+        run: npm audit --audit-level=high
+
+  container-security:
+    name: Container, dependency and secret security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install pip-audit
+      - run: pip-audit -r backend/requirements.txt
+      - name: Build production images
+        run: |
+          docker build -t lodgeflow-backend:ci backend
+          docker build -t lodgeflow-frontend:ci frontend
+      - name: Enforce non-root production images
+        run: |
+          test "$(docker image inspect lodgeflow-backend:ci --format '{{.Config.User}}')" != "" 
+          test "$(docker image inspect lodgeflow-backend:ci --format '{{.Config.User}}')" != "0"
+          test "$(docker image inspect lodgeflow-frontend:ci --format '{{.Config.User}}')" != ""
+          test "$(docker image inspect lodgeflow-frontend:ci --format '{{.Config.User}}')" != "0"
+      - name: Prepare security evidence directory
+        run: mkdir -p security-artifacts
+      - name: Generate backend CycloneDX SBOM
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: lodgeflow-backend:ci
+          format: cyclonedx
+          output: security-artifacts/backend-sbom.cdx.json
+          exit-code: '0'
+      - name: Generate frontend CycloneDX SBOM
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: lodgeflow-frontend:ci
+          format: cyclonedx
+          output: security-artifacts/frontend-sbom.cdx.json
+          exit-code: '0'
+      - uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: lodgeflow-backend:ci
+          format: table
+          exit-code: '1'
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+      - uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: lodgeflow-frontend:ci
+          format: table
+          exit-code: '1'
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-evidence
+          path: security-artifacts
+          if-no-files-found: warn
+
+  runtime-e2e:
+    name: Docker runtime + Playwright + restore drill
+    runs-on: ubuntu-latest
+    needs: [source-qa, backend, frontend]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare local QA environment
+        run: cp .env.local.example .env.local
+      - name: Validate and start full local stack
+        run: |
+          docker compose --env-file .env.local -f docker-compose.local.yml config --quiet
+          docker compose --env-file .env.local -f docker-compose.local.yml up -d --build
+      - name: Wait for backend and frontend
+        run: |
+          for i in $(seq 1 90); do curl -fsS http://127.0.0.1:8000/api/health/ >/dev/null && break; sleep 2; done
+          curl -fsS http://127.0.0.1:8000/api/health/
+          for i in $(seq 1 90); do curl -fsS http://127.0.0.1:3000/ >/dev/null && break; sleep 2; done
+          curl -fsS http://127.0.0.1:3000/ >/dev/null
+      - name: Runtime Django regression suite
+        run: docker compose --env-file .env.local -f docker-compose.local.yml exec -T backend python manage.py test platform_core --verbosity 2
+      - name: Install browser test dependencies
+        working-directory: frontend
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Desktop/mobile Playwright + axe
+        working-directory: frontend
+        env:
+          PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
+          LOCAL_ADMIN_EMAIL: admin@lodgeflow.local
+          LOCAL_ADMIN_PASSWORD: LodgeFlowLocal123!
+          LOCAL_ROLE_PASSWORD: LodgeFlowLocal123!
+        run: npm run test:e2e
+      - name: Encrypted destructive backup/restore drill
+        run: ./scripts/verify-backup-restore.sh
+      - name: Capture Docker and Playwright evidence
+        if: always()
+        run: |
+          mkdir -p qa-artifacts
+          docker compose --env-file .env.local -f docker-compose.local.yml ps > qa-artifacts/docker-ps.txt || true
+          docker compose --env-file .env.local -f docker-compose.local.yml logs --no-color > qa-artifacts/docker.log || true
+          cp -R frontend/playwright-report qa-artifacts/ 2>/dev/null || true
+          cp -R frontend/test-results qa-artifacts/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runtime-e2e-evidence
+          path: qa-artifacts
+          if-no-files-found: warn
+      - name: Stop stack
+        if: always()
+        run: docker compose --env-file .env.local -f docker-compose.local.yml down -v --remove-orphans || true
